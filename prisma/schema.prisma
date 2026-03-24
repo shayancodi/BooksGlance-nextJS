@@ -1,0 +1,287 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model addresses {
+  id          Int        @id @default(autoincrement())
+  customer_id Int?
+  full_name   String     @db.VarChar(300)
+  phone       String?    @db.VarChar(20)
+  address     String
+  city        String     @db.VarChar(100)
+  province    String?    @db.VarChar(100)
+  is_default  Boolean?   @default(false)
+  created_at  DateTime?  @default(now()) @db.Timestamp(6)
+  customers   customers? @relation(fields: [customer_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  orders      orders[]
+}
+
+model admin_users {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(300)
+  email         String    @unique @db.VarChar(300)
+  password_hash String    @db.VarChar(500)
+  role          String?   @default("admin") @db.VarChar(50)
+  last_login    DateTime? @db.Timestamp(6)
+  is_active     Boolean?  @default(true)
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model authors {
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(300)
+  slug             String    @unique @db.VarChar(400)
+  meta_title       String?   @db.VarChar(60)
+  meta_description String?   @db.VarChar(160)
+  bio              String?
+  photo            String?   @db.VarChar(1000)
+  photo_alt        String?   @db.VarChar(200)
+  website          String?   @db.VarChar(500)
+  nationality      String?   @db.VarChar(100)
+  birth_year       Int?
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @default(now()) @db.Timestamp(6)
+  books            books[]
+}
+
+model book_images {
+  id            Int       @id @default(autoincrement())
+  book_id       Int?
+  image_url     String    @db.VarChar(1000)
+  alt_text      String?   @db.VarChar(200)
+  caption       String?   @db.VarChar(500)
+  display_order Int?      @default(0)
+  is_primary    Boolean?  @default(false)
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  books         books?    @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model book_tags {
+  book_id Int
+  tag_id  Int
+  books   books @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  tags    tags  @relation(fields: [tag_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([book_id, tag_id])
+}
+
+model books {
+  id                                                 Int             @id @default(autoincrement())
+  title                                              String          @db.VarChar(500)
+  slug                                               String          @unique @db.VarChar(600)
+  isbn                                               String?         @unique @db.VarChar(20)
+  barcode                                            String?         @db.VarChar(100)
+  meta_title                                         String?         @db.VarChar(60)
+  meta_description                                   String?         @db.VarChar(160)
+  description                                        String
+  keywords                                           String?         @db.VarChar(500)
+  language                                           String          @default("english") @db.VarChar(20)
+  pages                                              Int?
+  published_year                                     Int?
+  edition                                            String?         @db.VarChar(50)
+  weight_grams                                       Int?
+  price                                              Decimal         @db.Decimal(10, 2)
+  original_price                                     Decimal?        @db.Decimal(10, 2)
+  stock                                              Int             @default(0)
+  low_stock_threshold                                Int?            @default(5)
+  is_available                                       Boolean?        @default(true)
+  author_id                                          Int?
+  publisher_id                                       Int?
+  category_id                                        Int?
+  cover_image                                        String?         @db.VarChar(1000)
+  cover_image_alt                                    String?         @db.VarChar(200)
+  is_featured                                        Boolean?        @default(false)
+  is_bestseller                                      Boolean?        @default(false)
+  is_new_arrival                                     Boolean?        @default(false)
+  views                                              Int?            @default(0)
+  created_at                                         DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at                                         DateTime?       @default(now()) @db.Timestamp(6)
+  book_images                                        book_images[]
+  book_tags                                          book_tags[]
+  authors                                            authors?        @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  categories                                         categories?     @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  publishers                                         publishers?     @relation(fields: [publisher_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cart                                               cart[]
+  order_items                                        order_items[]
+  related_books_related_books_book_idTobooks         related_books[] @relation("related_books_book_idTobooks")
+  related_books_related_books_related_book_idTobooks related_books[] @relation("related_books_related_book_idTobooks")
+  reviews                                            reviews[]
+  wishlist                                           wishlist[]
+}
+
+model cart {
+  id          Int        @id @default(autoincrement())
+  customer_id Int?
+  book_id     Int?
+  quantity    Int        @default(1)
+  created_at  DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at  DateTime?  @default(now()) @db.Timestamp(6)
+  books       books?     @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  customers   customers? @relation(fields: [customer_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([customer_id, book_id])
+}
+
+model categories {
+  id               Int          @id @default(autoincrement())
+  name             String       @db.VarChar(200)
+  slug             String       @unique @db.VarChar(300)
+  meta_title       String?      @db.VarChar(60)
+  meta_description String?      @db.VarChar(160)
+  description      String?
+  parent_id        Int?
+  cover_image      String?      @db.VarChar(1000)
+  cover_image_alt  String?      @db.VarChar(200)
+  is_active        Boolean?     @default(true)
+  display_order    Int?         @default(0)
+  created_at       DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?    @default(now()) @db.Timestamp(6)
+  books            books[]
+  categories       categories?  @relation("categoriesTocategories", fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  other_categories categories[] @relation("categoriesTocategories")
+}
+
+model coupons {
+  id             Int       @id @default(autoincrement())
+  code           String    @unique @db.VarChar(50)
+  discount_type  String    @db.VarChar(20)
+  discount_value Decimal   @db.Decimal(10, 2)
+  minimum_order  Decimal?  @default(0) @db.Decimal(10, 2)
+  maximum_uses   Int?
+  used_count     Int?      @default(0)
+  expires_at     DateTime? @db.Timestamp(6)
+  is_active      Boolean?  @default(true)
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  orders         orders[]
+}
+
+model customers {
+  id             Int         @id @default(autoincrement())
+  full_name      String      @db.VarChar(300)
+  email          String      @unique @db.VarChar(300)
+  phone          String?     @db.VarChar(20)
+  password_hash  String      @db.VarChar(500)
+  is_active      Boolean?    @default(true)
+  email_verified Boolean?    @default(false)
+  created_at     DateTime?   @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?   @default(now()) @db.Timestamp(6)
+  addresses      addresses[]
+  cart           cart[]
+  orders         orders[]
+  reviews        reviews[]
+  wishlist       wishlist[]
+}
+
+model order_items {
+  id          Int       @id @default(autoincrement())
+  order_id    Int?
+  book_id     Int?
+  quantity    Int       @default(1)
+  unit_price  Decimal   @db.Decimal(10, 2)
+  total_price Decimal   @db.Decimal(10, 2)
+  created_at  DateTime? @default(now()) @db.Timestamp(6)
+  books       books?    @relation(fields: [book_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orders      orders?   @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model orders {
+  id                 Int               @id @default(autoincrement())
+  customer_id        Int?
+  address_id         Int?
+  coupon_id          Int?
+  shipping_method_id Int?
+  status             String?           @default("pending") @db.VarChar(50)
+  subtotal           Decimal           @db.Decimal(10, 2)
+  shipping_cost      Decimal?          @default(0) @db.Decimal(10, 2)
+  discount           Decimal?          @default(0) @db.Decimal(10, 2)
+  total              Decimal           @db.Decimal(10, 2)
+  payment_method     String?           @db.VarChar(50)
+  payment_status     String?           @default("unpaid") @db.VarChar(50)
+  payment_reference  String?           @db.VarChar(200)
+  notes              String?
+  created_at         DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?         @default(now()) @db.Timestamp(6)
+  order_items        order_items[]
+  addresses          addresses?        @relation(fields: [address_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  coupons            coupons?          @relation(fields: [coupon_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  customers          customers?        @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  shipping_methods   shipping_methods? @relation(fields: [shipping_method_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model publishers {
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(300)
+  slug             String    @unique @db.VarChar(400)
+  meta_title       String?   @db.VarChar(60)
+  meta_description String?   @db.VarChar(160)
+  description      String?
+  website          String?   @db.VarChar(500)
+  country          String?   @db.VarChar(100)
+  city             String?   @db.VarChar(100)
+  logo             String?   @db.VarChar(1000)
+  logo_alt         String?   @db.VarChar(200)
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  books            books[]
+}
+
+model related_books {
+  id                                         Int    @id @default(autoincrement())
+  book_id                                    Int?
+  related_book_id                            Int?
+  display_order                              Int?   @default(0)
+  books_related_books_book_idTobooks         books? @relation("related_books_book_idTobooks", fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  books_related_books_related_book_idTobooks books? @relation("related_books_related_book_idTobooks", fields: [related_book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([book_id, related_book_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model reviews {
+  id                   Int        @id @default(autoincrement())
+  book_id              Int?
+  customer_id          Int?
+  rating               Int
+  title                String?    @db.VarChar(200)
+  body                 String?
+  is_verified_purchase Boolean?   @default(false)
+  is_approved          Boolean?   @default(false)
+  created_at           DateTime?  @default(now()) @db.Timestamp(6)
+  books                books?     @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  customers            customers? @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model shipping_methods {
+  id             Int      @id @default(autoincrement())
+  name           String   @db.VarChar(200)
+  description    String?
+  cost           Decimal  @db.Decimal(10, 2)
+  estimated_days Int?
+  is_active      Boolean? @default(true)
+  orders         orders[]
+}
+
+model tags {
+  id               Int         @id @default(autoincrement())
+  name             String      @unique @db.VarChar(100)
+  slug             String      @unique @db.VarChar(150)
+  meta_title       String?     @db.VarChar(60)
+  meta_description String?     @db.VarChar(160)
+  created_at       DateTime?   @default(now()) @db.Timestamp(6)
+  book_tags        book_tags[]
+}
+
+model wishlist {
+  id          Int        @id @default(autoincrement())
+  customer_id Int?
+  book_id     Int?
+  created_at  DateTime?  @default(now()) @db.Timestamp(6)
+  books       books?     @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  customers   customers? @relation(fields: [customer_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([customer_id, book_id])
+}
