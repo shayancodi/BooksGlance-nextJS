@@ -88,7 +88,7 @@ const FeaturedSection: React.FC = () => {
                 transition: springConfigs.gentle
               }}
             >
-              <Link to={`/book/${book.id}`} className="block">
+              <Link href={`/book/${book.id}`} className="block">
                 <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl">
                   {/* Book Image */}
                   <div className="relative h-80 overflow-hidden">
@@ -210,7 +210,7 @@ const FeaturedSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <Link to="/categories">
+          <Link href="/categories">
             <motion.button
               className="group inline-flex items-center gap-3 px-10 py-4 rounded-3xl font-bold text-lg text-clay-800 dark:text-cream-200 glass border border-terracotta-200/30 hover:border-terracotta-300/50 transition-all duration-300 backdrop-blur-xl"
               whileHover={{ 
