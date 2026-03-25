@@ -194,7 +194,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
                       <StarIcon 
                         size={16} 
                         className={`${
-                          i < Math.floor(book.rating) 
+                          i < Math.floor(book.rating ?? 0) 
                             ? 'text-sand-500 fill-sand-500' 
                             : 'text-clay-400'
                         }`} 
@@ -218,13 +218,12 @@ const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
                   <span className="text-2xl font-bold bg-gradient-to-r from-terracotta-600 to-clay-600 bg-clip-text text-transparent">
                     PKR {book.price.toFixed(2)}
                   </span>
-                  {book.originalPrice && book.originalPrice > book.price && (
+                      {book.original_price && book.original_price > book.price && (
                     <span className="text-sm text-clay-400 dark:text-cream-500 line-through">
-                      PKR {book.originalPrice.toFixed(2)}
+                      PKR {book.original_price?.toFixed(2)}
                     </span>
                   )}
             </motion.div>
-
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

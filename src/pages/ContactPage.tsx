@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
-import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon, FacebookIcon, TwitterIcon, InstagramIcon } from 'lucide-react';
+import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon, Facebook, Twitter, Instagram } from 'lucide-react';
 const ContactPage: React.FC = () => {
   const {
     theme
@@ -98,13 +98,13 @@ const ContactPage: React.FC = () => {
               </h3>
               <div className="flex space-x-4">
                 <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`}>
-                  <FacebookIcon size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+                  <Facebook size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
                 </a>
                 <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`}>
-                  <TwitterIcon size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+                  <Twitter size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
                 </a>
                 <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`}>
-                  <InstagramIcon size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+                  <Instagram size={24} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
                 </a>
               </div>
             </div>
