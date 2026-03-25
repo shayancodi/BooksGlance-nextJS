@@ -1,15 +1,36 @@
 export interface Book {
-  id: string;
+   id: number | string;
   title: string;
-  author: string;
-  genre: string;
+  slug?: string;
+  author?: string;
+  authors?: {
+    id: number | string;
+    name: string;
+    slug?: string;
+  };
+  genre?: string;
+  categories?: {
+    id: number | string;
+    name: string;
+    slug?: string;
+  };
   description: string;
   price: number;
-  rating: number;
-  coverImage: string;
-  bestSeller: boolean;
-  newArrival: boolean;
-  featured: boolean;
+  original_price?: number;
+  rating?: number;
+  cover_image?: string;
+  coverImage?: string;
+  is_bestseller?: boolean;
+  bestSeller?: boolean;
+  is_new_arrival?: boolean;
+  newArrival?: boolean;
+  is_featured?: boolean;
+  featured?: boolean;
+  meta_title?: string;
+  meta_description?: string;
+  keywords?: string;
+  stock?: number;
+  language?: string;
 }
 export const books: Book[] = [{
   id: '1',
@@ -146,7 +167,7 @@ export const genres = [{
   icon: '🔍'
 }];
 export function getBooksByGenre(genre: string): Book[] {
-  return books.filter(book => book.genre.toLowerCase() === genre.toLowerCase());
+  return books.filter(book => book.genre?.toLowerCase() === genre.toLowerCase());
 }
 export function getBookById(id: string): Book | undefined {
   return books.find(book => book.id === id);

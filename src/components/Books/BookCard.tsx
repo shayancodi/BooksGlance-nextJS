@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Book } from '../../data/books';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -58,7 +58,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
     >
       <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-300">
         {/* Book Cover */}
-        <Link to={`/book/${book.id}`} className="block relative h-80 overflow-hidden">
+        <Link href={`/books/${book.slug}`} className="block relative h-80 overflow-hidden">
           <motion.img 
             src={book.coverImage} 
             alt={book.title} 
@@ -168,7 +168,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
 
         {/* Book Details */}
         <div className="p-6">
-          <Link to={`/book/${book.id}`} className="block group">
+          <Link href={`/books/${book.slug}`} className="block group">
             <motion.h3 
               className="text-lg font-bold text-clay-800 dark:text-cream-200 mb-2 group-hover:text-terracotta-600 dark:group-hover:text-terracotta-400 transition-colors duration-300 line-clamp-2"
               whileHover={{ x: 5 }}
@@ -229,10 +229,11 @@ const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-                  <Link
-                    to={`/book/${book.id}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-cream-50 bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 transition-all duration-300 shadow-warm hover:shadow-glow"
-                  >
+                <Link
+  href={`/books/${book.slug}`}
+  className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-cream-50 bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 transition-all duration-300 shadow-warm hover:shadow-glow"
+>
+
                     <BookOpenIcon size={16} />
                     View Details
                   </Link>
