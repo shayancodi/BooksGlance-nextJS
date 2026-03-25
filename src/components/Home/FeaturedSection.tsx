@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { BookOpenIcon, StarIcon, HeartIcon, EyeIcon, ArrowRightIcon } from 'lucide-react';
 import { animationVariants, springConfigs } from '../../utils/animations';
 import { Book } from '../../data/books';
-import { getAllBooks } from '../../services/booksService';
-
 const FeaturedSection: React.FC = () => {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFeaturedBooks = async () => {
-      try {
-        const allBooks = await getAllBooks();
-        // Get featured books (limit to 3)
-        const featured = allBooks.filter(book => book.featured).slice(0, 3);
-        setFeaturedBooks(featured);
-      } catch (error) {
-        console.error('Error fetching featured books:', error);
-        setFeaturedBooks([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFeaturedBooks();
+  try {
+    const response = await fetch('/api/books/featured');
+    const featured = await response.json();
+    setFeaturedBooks(featured);
+  } catch (error) {
+    console.error('Error fetching featured books:', error);
+    setFeaturedBooks([]);
+  } finally {
+    setLoading(false);
+  }
+};
   }, []);
 
   if (loading) {

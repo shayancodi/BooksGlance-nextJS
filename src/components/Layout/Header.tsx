@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import { 
@@ -18,8 +19,8 @@ import {
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -35,8 +36,7 @@ const Header: React.FC = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/categories?search=${encodeURIComponent(searchQuery.trim())}`);
-    }
+router.push(`/categories?search=${encodeURIComponent(searchQuery.trim())}`);    }
   };
 
   const toggleMenu = () => {
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className="flex-shrink-0"
           >
-            <Link to="/" className="flex items-center gap-2 sm:gap-3">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3">
               <div className="p-1.5 sm:p-2 glass rounded-xl sm:rounded-2xl border border-terracotta-200/30">
                 <BookOpenIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-clay-800 dark:text-cream-200" />
               </div>
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                 transition={{ delay: 0.1 + index * 0.1 }}
               >
                 <Link
-                  to={item.path}
+                  href={item.path}
                   className={`relative px-3 lg:px-4 py-2 rounded-xl lg:rounded-2xl font-medium text-xs lg:text-sm transition-all duration-300 ${
                     location.pathname === item.path
                       ? 'text-clay-800 dark:text-cream-200 glass border border-terracotta-300/50'
@@ -99,13 +99,13 @@ const Header: React.FC = () => {
                   }`}
                 >
                   {item.name}
-                  {location.pathname === item.path && (
+                  pathname === item.path && (
                     <motion.div
                       layoutId="activeTab"
                       className="absolute inset-0 glass border border-terracotta-300/50 rounded-xl lg:rounded-2xl -z-10"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
-                  )}
+                  )
                 </Link>
               </motion.div>
             ))}
@@ -157,7 +157,7 @@ const Header: React.FC = () => {
               >
                 {item.link ? (
                   <Link
-                    to={item.link}
+                    href={item.link}
                     className={`p-2 lg:p-3 rounded-xl lg:rounded-2xl glass border border-terracotta-200/30 text-clay-800 dark:text-cream-200 transition-all duration-300 ${item.color} flex items-center justify-center`}
                     aria-label={item.label}
                   >
@@ -275,7 +275,7 @@ const Header: React.FC = () => {
                     transition={{ delay: index * 0.05 }}
                   >
                     <Link
-                      to={item.path}
+                      href={item.path}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm text-clay-800 dark:text-cream-200 transition-all duration-300 ${
                         location.pathname === item.path
                           ? 'glass border border-terracotta-300/50 bg-terracotta-500/10'
@@ -309,7 +309,7 @@ const Header: React.FC = () => {
                   >
                     {item.link ? (
                       <Link
-                        to={item.link}
+                        href={item.link}
                         className="w-full p-3 rounded-xl glass border border-terracotta-200/30 text-clay-800 dark:text-cream-200 hover:bg-terracotta-500/80 transition-all duration-300 flex flex-col items-center justify-center gap-1"
                         aria-label={item.label}
                         onClick={toggleMenu}
