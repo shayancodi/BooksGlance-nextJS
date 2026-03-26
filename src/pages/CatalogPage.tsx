@@ -1,5 +1,6 @@
+"use client";
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useTheme } from '../contexts/ThemeContext';
 import BookGrid from '../components/Books/BookGrid';
 import { Book, genres } from '../data/books';

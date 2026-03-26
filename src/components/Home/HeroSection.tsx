@@ -1,6 +1,7 @@
 "use client";
+"use client";
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { animationVariants } from '../../utils/animations';
 import OriginalBook from './OriginalBook';
@@ -136,7 +137,7 @@ const HeroSection: React.FC = () => {
               }}
             >
               <Link
-                to="/categories"
+                href="/categories"
                 className="group relative inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full bg-gradient-to-r from-terracotta-600 via-terracotta-700 to-clay-600 dark:from-terracotta-500 dark:via-clay-600 dark:to-sand-600 text-cream-50 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden min-w-[200px]"
               >
                 <motion.div
@@ -174,7 +175,7 @@ const HeroSection: React.FC = () => {
               }}
             >
               <Link
-                to="/about"
+                href="/about"
                 className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full border-2 border-clay-300 dark:border-clay-600 text-clay-700 dark:text-cream-200 font-medium text-base sm:text-lg hover:border-terracotta-500 dark:hover:border-terracotta-500 hover:text-terracotta-600 dark:hover:text-terracotta-400 transition-all duration-300 backdrop-blur-sm bg-cream-50/50 dark:bg-clay-800/30 min-w-[200px]"
               >
                 Learn More

@@ -1,5 +1,7 @@
+"use client";
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useTheme } from '../contexts/ThemeContext';
 import { Book } from '../data/books';
 import { getBookById, getAllBooks } from '../services/booksService';
@@ -15,7 +17,7 @@ const BookDetailsPage: React.FC = () => {
   } = useParams<{
     id: string;
   }>();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [book, setBook] = useState<Book | null>(null);
   const [similarBooks, setSimilarBooks] = useState<Book[]>([]);
@@ -60,7 +62,7 @@ const BookDetailsPage: React.FC = () => {
         <p className="mb-8">
           Sorry, the book you are looking for does not exist.
         </p>
-        <button onClick={() => navigate(-1)} className={`px-6 py-2 rounded-lg ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'} text-white transition-colors`}>
+        <button onClick={() => router.push(-1)} className={`px-6 py-2 rounded-lg ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'} text-white transition-colors`}>
           Go Back
         </button>
       </div>;
@@ -72,7 +74,7 @@ const BookDetailsPage: React.FC = () => {
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li className="inline-flex items-center">
-                <Link to="/" className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
+                <Link href="/" className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
                   Home
                 </Link>
               </li>
@@ -81,7 +83,7 @@ const BookDetailsPage: React.FC = () => {
                   <span className={`mx-2 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
                     /
                   </span>
-                  <Link to="/categories" className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
+                  <Link href="/categories" className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
                     Books
                   </Link>
                 </div>
@@ -91,7 +93,7 @@ const BookDetailsPage: React.FC = () => {
                   <span className={`mx-2 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
                     /
                   </span>
-                  <Link to={`/categories/${book.genre?.toLowerCase()}`} className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
+                  <Link href={`/categories/${book.genre?.toLowerCase()}`} className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
                     {book.genre}
                   </Link>
                 </div>
@@ -110,7 +112,7 @@ const BookDetailsPage: React.FC = () => {
           </nav>
         </div>
         {/* Back Button (Mobile) */}
-        <button onClick={() => navigate(-1)} className={`md:hidden flex items-center mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+        <button onClick={() => router.push(-1)} className={`md:hidden flex items-center mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
           <ArrowLeftIcon size={16} className="mr-1" /> Back
         </button>
         {/* Book Details */}
@@ -140,7 +142,7 @@ const BookDetailsPage: React.FC = () => {
               </h1>
               <p className={`text-lg mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                 by{' '}
-                <Link to="#" className="hover:underline">
+                <Link href="#" className="hover:underline">
                   {book.author}
                 </Link>
               </p>

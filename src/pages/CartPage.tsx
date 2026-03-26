@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTheme } from '../contexts/ThemeContext';
 import { ShoppingCartIcon, TrashIcon, CreditCardIcon, XIcon } from 'lucide-react';
 import { books } from '../data/books';
@@ -94,7 +95,7 @@ const CartPage: React.FC = () => {
               </div>
               {/* Continue Shopping */}
               <div className="mt-6 flex justify-between items-center">
-                <Link to="/categories" className={`flex items-center ${theme === 'dark' ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'}`}>
+                <Link href="/categories" className={`flex items-center ${theme === 'dark' ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'}`}>
                   ← Continue Shopping
                 </Link>
                 <button onClick={() => setCartItems([])} className={`px-4 py-2 rounded ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'}`}>
@@ -168,7 +169,7 @@ const CartPage: React.FC = () => {
             <p className={`mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
               Looks like you haven't added any books to your cart yet.
             </p>
-            <Link to="/categories" className={`px-6 py-3 rounded-lg ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'} text-white transition-colors`}>
+            <Link href="/categories" className={`px-6 py-3 rounded-lg ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'} text-white transition-colors`}>
               Browse Books
             </Link>
           </div>}

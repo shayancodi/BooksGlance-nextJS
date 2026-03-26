@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTheme } from '../contexts/ThemeContext';
 const NotFoundPage: React.FC = () => {
   const {

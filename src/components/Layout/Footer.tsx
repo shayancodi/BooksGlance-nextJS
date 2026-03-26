@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTheme } from '../../contexts/ThemeContext';
 import { Mail, Sun, Moon } from 'lucide-react';
 const Footer: React.FC = () => {
@@ -35,27 +36,27 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/categories" className="hover:underline">
+                <Link href="/categories" className="hover:underline">
                   Browse Books
                 </Link>
               </li>
               <li>
-                <Link to="/best-sellers" className="hover:underline">
+                <Link href="/best-sellers" className="hover:underline">
                   Best Sellers
                 </Link>
               </li>
               <li>
-                <Link to="/new-arrivals" className="hover:underline">
+                <Link href="/new-arrivals" className="hover:underline">
                   New Arrivals
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:underline">
+                <Link href="/about" className="hover:underline">
                   About Us
                 </Link>
               </li>
@@ -68,7 +69,7 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/contact" className="hover:underline">
+                <Link href="/contact" className="hover:underline">
                   Contact Us
                 </Link>
               </li>
