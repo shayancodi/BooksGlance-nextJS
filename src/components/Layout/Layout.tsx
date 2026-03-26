@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import FloatingActionButton from './FloatingActionButton';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { animationVariants } from '../../utils/animations';
 
 interface LayoutProps {
@@ -14,7 +14,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { theme } = useTheme();
-  const location = useLocation();
+  const pathname = usePathname();
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-x-hidden">
@@ -52,7 +52,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       
       <AnimatePresence mode="wait">
         <motion.main
-          key={location.pathname}
+          key={pathname}
           initial="initial"
           animate="in"
           exit="out"
