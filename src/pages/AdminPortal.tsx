@@ -148,12 +148,12 @@ const AdminPortal: React.FC = () => {
         ...formData,
         coverImage: imageUrl,
         price: parseFloat(formData.price.toString()) || 0,
-        rating: parseFloat(formData.rating.toString()) || 0
+        rating: parseFloat(formData.rating?.toString() ?? '0') || 0
       };
 
       // Add book to Firestore with the same ID used for Cloudinary
       try {
-        const addedBookId = await addBook(bookData, bookId);
+        const addedBookId = await addBook(bookData);
         console.log('Book added to Firebase with ID:', addedBookId);
       } catch (firebaseError) {
         console.error('Firebase error:', firebaseError);
