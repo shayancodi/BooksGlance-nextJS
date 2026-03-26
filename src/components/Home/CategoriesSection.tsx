@@ -137,8 +137,8 @@ const CategoriesSection: React.FC = () => {
                       key={i}
                       className="absolute w-1 h-1 bg-cream-200 rounded-full"
                       style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
+                        left: `${(i * 17 + 5) % 100}%`,
+                        top: `${(i * 13 + 7) % 100}%`,
                       }}
                       animate={{
                         y: [0, -20, 0],

@@ -107,7 +107,7 @@ const AdminPortal: React.FC = () => {
   };
 
   const generateBookId = (): string => {
-    return `book_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `book_${Date.now()}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

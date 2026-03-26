@@ -32,17 +32,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             key={i}
             className="absolute w-2 h-2 bg-terracotta-300/20 dark:bg-terracotta-500/30 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${(i * 17 + 5) % 100}%`,
+              top: `${(i * 13 + 7) % 100}%`,
             }}
             animate={{
               y: [0, -100, 0],
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 3 + (i * 0.3) % 2,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: (i * 0.2) % 2,
             }}
           />
         ))}
