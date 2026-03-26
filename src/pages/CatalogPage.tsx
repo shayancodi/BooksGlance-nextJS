@@ -56,7 +56,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({
       result = allBooks.filter(book => book.newArrival);
     } else if (category) {
       // Filter by category if provided in URL
-      result = allBooks.filter(book => book.genre.toLowerCase() === category.toLowerCase());
+      result = allBooks.filter(book => book.genre?.toLowerCase() === category.toLowerCase());
       setActiveGenre(category);
     } else {
       // Default to all books
@@ -65,7 +65,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({
     // Apply search filter if search query exists
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      result = result.filter(book => book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query) || book.genre.toLowerCase().includes(query));
+      result = result.filter(book => book.title.toLowerCase().includes(query) || book.author?.toLowerCase().includes(query) || book.genre?.toLowerCase().includes(query));
     }
     // Apply sorting
     switch (sortOption) {
@@ -76,8 +76,8 @@ const CatalogPage: React.FC<CatalogPageProps> = ({
         result.sort((a, b) => b.price - a.price);
         break;
       case 'rating':
-        result.sort((a, b) => b.rating - a.rating);
-        break;
+      result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+      break;
       case 'title-az':
         result.sort((a, b) => a.title.localeCompare(b.title));
         break;
@@ -98,7 +98,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({
       // Show all books if no genre is selected
       setFilteredBooks(allBooks);
     } else {
-      setFilteredBooks(allBooks.filter(book => book.genre.toLowerCase() === genre.toLowerCase()));
+      setFilteredBooks(allBooks.filter(book => book.genre?.toLowerCase() === genre.toLowerCase()));
     }
   };
   // Get page title based on props and params

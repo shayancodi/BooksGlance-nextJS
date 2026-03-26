@@ -98,7 +98,7 @@ const NewsletterSection: React.FC = () => {
                 variants={animationVariants.cardFadeIn}
                 className="flex-grow relative"
               >
-                <input
+                <motion.input
                   type="email"
                   placeholder="Enter your email address"
                   value={email}

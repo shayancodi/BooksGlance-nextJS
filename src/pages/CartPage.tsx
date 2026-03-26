@@ -68,13 +68,13 @@ const CartPage: React.FC = () => {
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center">
                             <div className={`flex items-center border rounded ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'}`}>
-                              <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className={`px-2 py-1 ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                              <button onClick={() => updateQuantity(item.id.toString(), item.quantity - 1)} className={`px-2 py-1 ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
                                 -
                               </button>
                               <span className={`px-3 py-1 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                                 {item.quantity}
                               </span>
-                              <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className={`px-2 py-1 ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                              <button onClick={() => updateQuantity(item.id.toString(), item.quantity + 1)} className={`px-2 py-1 ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
                                 +
                               </button>
                             </div>
@@ -84,7 +84,7 @@ const CartPage: React.FC = () => {
                           PKR {(item.price * item.quantity).toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-right">
-                          <button onClick={() => removeItem(item.id)} className={`p-1 rounded-full ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                          <button onClick={() => removeItem(item.id.toString())} className={`p-1 rounded-full ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
                             <TrashIcon size={18} className="text-red-500" />
                           </button>
                         </td>

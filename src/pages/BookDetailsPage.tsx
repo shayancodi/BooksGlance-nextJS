@@ -91,7 +91,7 @@ const BookDetailsPage: React.FC = () => {
                   <span className={`mx-2 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
                     /
                   </span>
-                  <Link to={`/categories/${book.genre.toLowerCase()}`} className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
+                  <Link to={`/categories/${book.genre?.toLowerCase()}`} className={`text-sm ${theme === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-700 hover:text-blue-600'}`}>
                     {book.genre}
                   </Link>
                 </div>
@@ -147,7 +147,7 @@ const BookDetailsPage: React.FC = () => {
               {/* Rating */}
               <div className="flex items-center mb-4">
                 <div className="flex">
-                  {[...Array(5)].map((_, i) => <StarIcon key={i} size={18} className={i < Math.floor(book.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'} />)}
+                  {[...Array(5)].map((_, i) => <StarIcon key={i} size={18} className={i < Math.floor(book.rating ?? 0) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'} />)}
                 </div>
                 <span className={`ml-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
                   ({book.rating})

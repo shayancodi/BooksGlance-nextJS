@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Facebook, Twitter, Instagram, Mail, Sun, Moon } from 'lucide-react';
+import { Mail, Sun, Moon } from 'lucide-react';
 const Footer: React.FC = () => {
   const {
     theme,
@@ -21,13 +21,10 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`} aria-label="Facebook">
-                <Facebook size={16} className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'} />
               </a>
               <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`} aria-label="Twitter">
-                <Twitter size={16} className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'} />
               </a>
               <a href="#" className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`} aria-label="Instagram">
-                <Instagram size={16} className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'} />
               </a>
             </div>
           </div>

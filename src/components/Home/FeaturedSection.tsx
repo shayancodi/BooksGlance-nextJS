@@ -152,7 +152,7 @@ const FeaturedSection: React.FC = () => {
                           key={i}
                           size={20} 
                           className={`${
-                            i < Math.floor(book.rating) 
+                            i < Math.floor(book.rating ?? 0) 
                               ? 'text-sand-500 fill-sand-500' 
                               : 'text-clay-400'
                           }`} 
