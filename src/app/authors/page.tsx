@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import AuthorsPage from '@/pages/AuthorsPage';
 
 export const metadata: Metadata = {
   title: 'Authors | BooksGlance - Discover Books by Your Favorite Authors',
@@ -7,6 +6,6 @@ export const metadata: Metadata = {
   keywords: 'authors, book authors, Pakistani authors, Urdu authors',
 };
 
-export default function Authors() {
-  return <AuthorsPage />;
+export default function AuthorsPage() {
+  return <div><h1>Authors</h1><p>Coming soon</p></div>;
 }

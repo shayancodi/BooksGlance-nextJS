@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import HomePage from '@/pages/HomePage';
 
 export const metadata: Metadata = {
   title: 'BooksGlance | Buy Books Online in Pakistan - Fast Delivery',
@@ -16,5 +15,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePage />;
+  return <div><h1>Welcome</h1><p>Coming soon</p></div>;
 }

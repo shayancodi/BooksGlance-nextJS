@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import CatalogPage from '@/pages/CatalogPage';
 
 export const metadata: Metadata = {
   title: 'Book Catalog | BooksGlance - Buy Books Online in Pakistan',
@@ -13,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function BooksPage() {
-  return <CatalogPage />;
+  return <div><h1>Books</h1><p>Coming soon</p></div>;
 }

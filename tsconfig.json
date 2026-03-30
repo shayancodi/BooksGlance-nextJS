@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "src/app/**/*", "src/components/**/*", "src/lib/**/*", "src/services/**/*", "src/contexts/**/*", "src/utils/**/*", "src/data/**/*", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "src/pages", ".next"]
+  "include": ["next-env.d.ts", "src/**/*", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "src/pages", ".next", "out", "build", "dist"]
 }

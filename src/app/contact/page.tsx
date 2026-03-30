@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import ContactPage from '@/pages/ContactPage';
 
 export const metadata: Metadata = {
   title: 'Contact Us | BooksGlance',
@@ -7,6 +6,6 @@ export const metadata: Metadata = {
   keywords: 'contact, support, customer service',
 };
 
-export default function Contact() {
-  return <ContactPage />;
+export default function ContactPage() {
+  return <div><h1>Contact</h1><p>Coming soon</p></div>;
 }
