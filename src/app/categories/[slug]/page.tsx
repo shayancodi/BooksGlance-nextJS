@@ -28,7 +28,7 @@ const CategoryPage = () => {
         
         const filtered = allBooks.filter(b => 
           b.genre?.toLowerCase() === normalizedSlug || 
-          b.categories?.toLowerCase().replace(/ /g, '-') === categorySlug
+          b.categories?.name?.toLowerCase().replace(/ /g, '-') === categorySlug
         );
         
         setBooks(filtered);

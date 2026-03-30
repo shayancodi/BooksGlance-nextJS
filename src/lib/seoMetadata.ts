@@ -118,7 +118,7 @@ export function generateBookSchema(book: Book) {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: book.rating || 4.5,
-      ratingCount: book.reviews || 0,
+      ratingCount: Math.floor(book.rating || 0) * 10,
     },
   };
 }

@@ -23,7 +23,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, icon }) => {
       transition={springConfigs.smooth}
     >
       <Link
-        to={`/categories/${name.toLowerCase()}`}
+        href={`/categories/${name.toLowerCase()}`}
         className="block group"
       >
             <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-300 p-6 flex flex-col items-center text-center min-h-[140px] justify-center">
