@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'next';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Book } from '@/data/books';
-import { getBookById, getAllBooks } from '@/services/booksService';
-import { StarIcon, ShoppingCartIcon, HeartIcon, ArrowLeftIcon, ShareIcon } from 'lucide-react';
-import BookCard from '@/components/Books/BookCard';
+import { getAllBooks } from '@/services/booksService';
+import { StarIcon, ShoppingCartIcon, HeartIcon, ArrowLeftIcon } from 'lucide-react';
+import BookGrid from '@/components/Books/BookGrid';
 
 const BookDetailsPage = () => {
   const { theme } = useTheme();

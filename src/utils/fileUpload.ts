@@ -44,13 +44,13 @@ export const uploadImageToHostinger = async (
         const errorData = await response.json();
         errorMessage = errorData.error || errorData.message || errorMessage;
         console.error('Upload error details:', errorData);
-      } catch (e) {
+      } catch {
         // If response body isn't JSON (e.g., 404 HTML), include the text snippet for debugging
         try {
           const text = await response.text();
           const snippet = text ? text.substring(0, 300) : '';
           errorMessage = `Upload failed: ${response.status} ${response.statusText}` + (snippet ? ` - ${snippet}` : '');
-        } catch (t) {
+        } catch {
           errorMessage = `Upload failed: ${response.status} ${response.statusText}`;
         }
       }

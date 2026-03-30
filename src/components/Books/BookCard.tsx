@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Book } from '../../data/books';
-import { useTheme } from '../../contexts/ThemeContext';
 import { ShoppingCartIcon, HeartIcon, StarIcon, EyeIcon, BookOpenIcon } from 'lucide-react';
 import { animationVariants, getCardAnimation, springConfigs } from '../../utils/animations';
 
@@ -12,7 +11,6 @@ interface BookCardProps {
 }
 
 const BookCard: React.FC<BookCardProps> = ({ book, index = 0 }) => {
-  const { theme } = useTheme();
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 

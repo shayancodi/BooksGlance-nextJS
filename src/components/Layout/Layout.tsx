@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingActionButton from './FloatingActionButton';
-import { useTheme } from '../../contexts/ThemeContext';
 import { usePathname } from 'next/navigation';
 import { animationVariants } from '../../utils/animations';
 
@@ -13,7 +12,6 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { theme } = useTheme();
   const pathname = usePathname();
 
   return (

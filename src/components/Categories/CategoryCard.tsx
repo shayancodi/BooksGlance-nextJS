@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useTheme } from '../../contexts/ThemeContext';
 import { springConfigs } from '../../utils/animations';
 
 interface CategoryCardProps {
@@ -11,7 +10,6 @@ interface CategoryCardProps {
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ name, icon }) => {
-  const { theme } = useTheme();
 
   return (
     <motion.div

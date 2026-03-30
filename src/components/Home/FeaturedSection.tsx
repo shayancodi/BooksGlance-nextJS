@@ -22,6 +22,7 @@ const FeaturedSection: React.FC = () => {
     setLoading(false);
   }
 };
+    fetchFeaturedBooks();
   }, []);
 
   if (loading) {
