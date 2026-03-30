@@ -57,7 +57,7 @@ const BookDetailsPage = () => {
     <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
       <div className="text-center">
         <h1 className={`text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Book Not Found</h1>
-        <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Sorry, we couldn't find this book.</p>
+        <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Sorry, we couldn&apos;t find this book.</p>
         <Link href="/books" className="inline-block px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">
           Back to Catalog
         </Link>

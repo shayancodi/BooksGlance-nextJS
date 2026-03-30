@@ -1,0 +1,4 @@
+src/pages/
+node_modules/
+.next/
+public/

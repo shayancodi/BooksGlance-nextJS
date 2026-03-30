@@ -160,7 +160,7 @@ const NewsletterSection: React.FC = () => {
                 { icon: SparklesIcon, title: "Weekly Recommendations", desc: "Handpicked books just for you" },
                 { icon: MailIcon, title: "Exclusive Deals", desc: "Special offers and discounts" },
                 { icon: CheckIcon, title: "No Spam", desc: "Unsubscribe anytime" }
-              ].map((feature, index) => (
+              ].map((feature) => (
                 <motion.div
                   key={feature.title}
                   variants={animationVariants.cardFadeIn}

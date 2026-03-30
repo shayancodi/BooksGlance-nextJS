@@ -29,11 +29,11 @@ const OriginalBook: React.FC = () => {
                   <h6>BY Shayan & Azeem</h6>
                   <p>‍</p>
                   <p>Centre of equal daughters, equal sons,</p>
-                  <p>All, all alike endear'd, grown, ungrown, young or old,</p>
+                  <p>All, all alike endear&apos;d, grown, ungrown, young or old,</p>
                   <p>Strong, ample, fair, enduring, capable, rich,</p>
                   <p>Perennial with the Earth, with Freedom, Law and Love,</p>
                   <p>A grand, sane, towering, seated Mother,</p>
-                  <p>Chair'd in the adamant of Time.</p>
+                  <p>Chair&apos;d in the adamant of Time.</p>
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@ const OriginalBook: React.FC = () => {
                   <h6>BY <a href="https://www.poetryfoundation.org/poets/walt-whitman" target="_blank" rel="noopener noreferrer">WALT WHITMAN</a></h6>
                   <p>‍</p>
                   <p>A glimpse through an interstice caught, </p>
-                  <p>Of a crowd of workmen and drivers in a bar-room around the stove late of a winter night, and I unremark'd seated in a corner, </p>
+                  <p>Of a crowd of workmen and drivers in a bar-room around the stove late of a winter night, and I unremark&apos;d seated in a corner, </p>
                   <p>‍</p>
                   <p>Of a youth who loves me and whom I love, silently approaching and seating himself near, that he may hold me by the hand, </p>
                   <p>‍</p>
