@@ -74,7 +74,7 @@ const HeroSection: React.FC = () => {
         </h1>
       </motion.div>
 
-      <div className="relative z-20 container mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-24 md:py-32 pointer-events-none flex flex-col items-center justify-center min-h-screen">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-32 pointer-events-none flex flex-col items-center justify-center min-h-screen">
         <motion.div
           variants={animationVariants.heroContainer}
           initial="hidden"

@@ -1,0 +1,26 @@
+# BooksGlance - Robots configuration
+# Allow search engines to index all public pages
+
+User-agent: *
+Allow: /
+
+# Disallow private/checkout pages
+Disallow: /cart
+Disallow: /checkout
+Disallow: /admin
+Disallow: /api
+Disallow: /account/login
+Disallow: /account/register
+
+# Allow specific bot agents
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay (in seconds)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://booksglance.pk/sitemap.xml
