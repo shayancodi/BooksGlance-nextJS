@@ -13,9 +13,12 @@ export const ThemeProvider: React.FC<{
   children
 }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check if theme is stored in localStorage
+    // Check if theme is stored in localStorage (client-only)
+    if (typeof window === 'undefined') {
+      return 'light'; // Default for SSR
+    }
     const savedTheme = localStorage.getItem('bookstore-theme');
-    return savedTheme as Theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    return (savedTheme as Theme) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   });
   useEffect(() => {
     // Apply theme to document

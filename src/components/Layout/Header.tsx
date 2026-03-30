@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from '../../contexts/ThemeContext';
 import { 
   SearchIcon, 
@@ -21,17 +21,21 @@ import {
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const router = useRouter();
-  // Unused// const pathname = usePathname();
+  const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      if (typeof window !== 'undefined') {
+        setScrolled(window.scrollY > 10);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -94,19 +98,19 @@ router.push(`/categories?search=${encodeURIComponent(searchQuery.trim())}`);    
                 <Link
                   href={item.path}
                   className={`relative px-3 lg:px-4 py-2 rounded-xl lg:rounded-2xl font-medium text-xs lg:text-sm transition-all duration-300 ${
-                    location.pathname === item.path
+                    pathname === item.path
                       ? 'text-clay-800 dark:text-cream-200 glass border border-terracotta-300/50'
                       : 'text-clay-700 dark:text-cream-300 hover:text-clay-800 dark:hover:text-cream-200 hover:glass hover:border-terracotta-200/30'
                   }`}
                 >
                   {item.name}
-                  pathname === item.path && (
+                  {pathname === item.path && (
                     <motion.div
                       layoutId="activeTab"
                       className="absolute inset-0 glass border border-terracotta-300/50 rounded-xl lg:rounded-2xl -z-10"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
-                  )
+                  )}
                 </Link>
               </motion.div>
             ))}
@@ -278,7 +282,7 @@ router.push(`/categories?search=${encodeURIComponent(searchQuery.trim())}`);    
                     <Link
                       href={item.path}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm text-clay-800 dark:text-cream-200 transition-all duration-300 ${
-                        location.pathname === item.path
+                        pathname === item.path
                           ? 'glass border border-terracotta-300/50 bg-terracotta-500/10'
                           : 'hover:glass hover:border-terracotta-200/30'
                       }`}

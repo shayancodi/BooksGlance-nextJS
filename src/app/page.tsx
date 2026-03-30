@@ -1,4 +1,8 @@
 import { Metadata } from 'next';
+import HeroSection from '@/components/Home/HeroSection';
+import FeaturedSection from '@/components/Home/FeaturedSection';
+import CategoriesSection from '@/components/Home/CategoriesSection';
+import NewsletterSection from '@/components/Home/NewsletterSection';
 
 export const metadata: Metadata = {
   title: 'BooksGlance | Buy Books Online in Pakistan - Fast Delivery',
@@ -15,5 +19,12 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <div><h1>Welcome</h1><p>Coming soon</p></div>;
+  return (
+    <div>
+      <HeroSection />
+      <FeaturedSection />
+      <CategoriesSection />
+      <NewsletterSection />
+    </div>
+  );
 }
