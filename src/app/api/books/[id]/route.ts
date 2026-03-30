@@ -9,7 +9,7 @@ export async function GET(
   try {
     const { id } = await params;
     const book = await prisma.books.findUnique({
-      where: { id },
+      where: { id: parseInt(id, 10) },
       include: {
         authors: true,
         categories: true,
@@ -56,7 +56,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
     const book = await prisma.books.update({
-      where: { id },
+      where: { id: parseInt(id, 10) },
       data: {
         title: body.title,
         slug: body.slug,
@@ -90,7 +90,7 @@ export async function DELETE(
   try {
     const { id } = await params;
     await prisma.books.delete({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     return NextResponse.json({ success: true });
   } catch (error) {
