@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import type { Prisma } from '@prisma/client';
 
 
 // GET books with filtering options
@@ -14,7 +15,7 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const skip = parseInt(searchParams.get('skip') || '0');
 
-    const where: { is_featured?: boolean; search?: string; genre?: string; sort?: string } = {};
+    const where: Prisma.BooksWhereInput = {};
 
     if (featured === 'true') {
       where.is_featured = true;
