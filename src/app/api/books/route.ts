@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '50');
     const skip = parseInt(searchParams.get('skip') || '0');
 
-    const where: Prisma.BooksWhereInput = {};
+    const where: Prisma.booksWhereInput = {};
 
     if (featured === 'true') {
       where.is_featured = true;

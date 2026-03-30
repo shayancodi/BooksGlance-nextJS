@@ -105,7 +105,7 @@ const BookDetailsPage = () => {
                 ))}
               </div>
               <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                {book.rating}/5 ({book.reviews || 0} reviews)
+                {book.rating}/5 ({Math.floor(book.rating || 0) * 10} reviews)
               </span>
             </div>
 
