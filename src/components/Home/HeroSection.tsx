@@ -67,19 +67,19 @@ const HeroSection: React.FC = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute top-20 sm:top-10 md:top-15 lg:top-10 transform -translate-x-1/2 z-30 pointer-events-auto text-center px-4"
+        className="fixed top-8 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto text-center px-4"
       >
-        <h1 className="text-5xl sm:text-7xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-400 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent tracking-wide leading-tight font-serif">
+        <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-400 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent tracking-wide leading-tight font-serif">
           BooksGlance
         </h1>
       </motion.div>
 
-      <div className="relative z-20 container mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-32 pointer-events-none flex flex-col items-center justify-center min-h-screen">
+      <div className="relative z-20 w-full container mx-auto px-4 sm:px-6 flex flex-col items-center justify-center min-h-screen">
         <motion.div
           variants={animationVariants.heroContainer}
           initial="hidden"
           animate="visible"
-          className="text-center max-w-5xl mx-auto pointer-events-auto px-4"
+          className="text-center max-w-5xl mx-auto w-full pointer-events-auto"
         >
           {/* Main Heading with Typewriter Effect */}
           <motion.h2
