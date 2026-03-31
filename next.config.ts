@@ -5,8 +5,6 @@ const nextConfig: NextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.json'
   },
-  // Skip static generation for client-heavy pages
-  experimental: {},
 };
 
 export default nextConfig;
