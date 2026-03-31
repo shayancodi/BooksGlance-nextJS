@@ -51,10 +51,10 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl font-bold text-clay-800 dark:text-cream-100 mb-4">Our Mission</h2>
             <p className="text-lg text-clay-700 dark:text-cream-200 leading-relaxed mb-4">
-              BooksGlance is Pakistan's premier online bookstore, dedicated to making quality literature and knowledge accessible to everyone. We believe books have the power to transform lives and expand minds.
+              BooksGlance is Pakistan&apos;s premier online bookstore, dedicated to making quality literature and knowledge accessible to everyone. We believe books have the power to transform lives and expand minds.
             </p>
             <p className="text-lg text-clay-700 dark:text-cream-200 leading-relaxed">
-              Founded with a passion for books and reading, we've grown to serve thousands of customers across Pakistan with reliable service, fast delivery, and authentic books at competitive prices.
+              Founded with a passion for books and reading, we&apos;ve grown to serve thousands of customers across Pakistan with reliable service, fast delivery, and authentic books at competitive prices.
             </p>
           </motion.div>
 

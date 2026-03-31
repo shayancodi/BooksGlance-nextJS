@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { BookOpenIcon, HeartIcon, StarIcon, MusicIcon, GamepadIcon, CameraIcon, PaletteIcon, CodeIcon, ZapIcon } from 'lucide-react';
+import CategoriesPageClient from '@/components/Pages/CategoriesPageClient';
 
 export const metadata: Metadata = {
   title: 'Categories | BooksGlance - Browse Book Categories',
