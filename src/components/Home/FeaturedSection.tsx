@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { StarIcon, HeartIcon, EyeIcon, ArrowRightIcon } from 'lucide-react';
+import { StarIcon, HeartIcon, EyeIcon, ArrowRightIcon, BookOpen } from 'lucide-react';
 import { Book } from '../../data/books';
 const FeaturedSection: React.FC = () => {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
@@ -56,7 +56,7 @@ const FeaturedSection: React.FC = () => {
 
         {/* Books Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredBooks.map((book, index) => (
+          {featuredBooks.map((book) => (
             <div key={book.id} className="group relative">
               <Link href={`/book/${book.id}`} className="block">
                 <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl">
@@ -125,14 +125,12 @@ const FeaturedSection: React.FC = () => {
                       </span>
                     </div>
 
-                    <motion.button
+                    <button
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-cream-50 bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 transition-all duration-300 shadow-lg hover:shadow-glow"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                     >
-                      <BookOpenIcon size={18} />
+                      <BookOpen size={18} />
                       Add to Cart
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
 

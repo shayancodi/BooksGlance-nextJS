@@ -1,78 +1,147 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const OriginalBook: React.FC = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth) * 20 - 10;
+      const y = (e.clientY / window.innerHeight) * 20 - 10;
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="original-book-container">
-      <div className="scene">
-        <div className="book-wrap">
-          <div className="left-side">
-            <div className="book-cover-left"></div>
-            <div className="layer1">
-              <div className="page-left"></div>
-            </div>
-            <div className="layer2">
-              <div className="page-left"></div>
-            </div>
-            <div className="layer3">
-              <div className="page-left"></div>
-            </div>
-            <div className="layer4">
-              <div className="page-left"></div>
-            </div>
-            <div className="layer-text">
-              <div className="page-left-2">
-                <div className="corner"></div>
-                <div className="corner2"></div>
-                <div className="corner-fold"></div>
-                <div className="page-text w-richtext">
-                  <h3><strong>BooksGlance</strong></h3>
-                  <h6>BY Shayan & Azeem</h6>
-                  <p>‍</p>
-                  <p>Centre of equal daughters, equal sons,</p>
-                  <p>All, all alike endear&apos;d, grown, ungrown, young or old,</p>
-                  <p>Strong, ample, fair, enduring, capable, rich,</p>
-                  <p>Perennial with the Earth, with Freedom, Law and Love,</p>
-                  <p>A grand, sane, towering, seated Mother,</p>
-                  <p>Chair&apos;d in the adamant of Time.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="center"></div>
-          <div className="right-side">
-            <div className="book-cover-right"></div>
-            <div className="layer1">
-              <div className="page-right"></div>
-            </div>
-            <div className="layer2 right">
-              <div className="page-right"></div>
-            </div>
-            <div className="layer3 right">
-              <div className="page-right"></div>
-            </div>
-            <div className="layer4 right">
-              <div className="page-right"></div>
-            </div>
-            <div className="layer-text right">
-              <div className="page-right-2">
-                <div className="page-text w-richtext">
-                  <h3><strong>A Glimpse of a new book store</strong></h3>
-                  <h6>BY <a href="https://www.poetryfoundation.org/poets/walt-whitman" target="_blank" rel="noopener noreferrer">WALT WHITMAN</a></h6>
-                  <p>‍</p>
-                  <p>A glimpse through an interstice caught, </p>
-                  <p>Of a crowd of workmen and drivers in a bar-room around the stove late of a winter night, and I unremark&apos;d seated in a corner, </p>
-                  <p>‍</p>
-                  <p>Of a youth who loves me and whom I love, silently approaching and seating himself near, that he may hold me by the hand, </p>
-                  <p>‍</p>
-                  <p>A long while amid the noises of coming and going, of drinking and oath and smutty jest, </p>
-                  <p>‍</p>
-                  <p>There we two, content, happy in being together, speaking little, perhaps not a word. </p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div style={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '400px',
+      height: '500px',
+      perspective: '1200px',
+      zIndex: 0,
+    }}>
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        transformStyle: 'preserve-3d',
+        transform: `rotateX(${mousePos.y * 0.5}deg) rotateY(${mousePos.x * 0.5}deg)`,
+        transition: 'transform 0.8s ease-out',
+      }}>
+        {/* Front Cover */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          backfaceVisibility: 'hidden',
+          backgroundColor: 'linear-gradient(135deg, #c41e3a 0%, #8B0000 100%)',
+          background: 'linear-gradient(135deg, #c41e3a 0%, #8B0000 100%)',
+          borderRadius: '8px',
+          padding: '40px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'white',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+          zIndex: 10,
+        }}>
+          <h2 style={{
+            fontSize: '2.5em',
+            fontWeight: 'bold',
+            marginBottom: '10px',
+            textAlign: 'center',
+          }}>BooksGlance</h2>
+          <p style={{
+            fontSize: '1.2em',
+            textAlign: 'center',
+            opacity: 0.9,
+          }}>Stories Beyond Pages</p>
         </div>
+
+        {/* Back Cover */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          backfaceVisibility: 'hidden',
+          backgroundColor: '#1a1a1a',
+          transform: 'rotateY(180deg)',
+          borderRadius: '8px',
+          padding: '40px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#e0e0e0',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+          zIndex: 10,
+        }}>
+          <p style={{
+            fontSize: '1.2em',
+            textAlign: 'center',
+          }}>Discover. Read. Share.</p>
+        </div>
+
+        {/* Spine - just decorative 3D effect */}
+        <div style={{
+          position: 'absolute',
+          width: '20px',
+          height: '100%',
+          top: 0,
+          left: '50%',
+          marginLeft: '-10px',
+          background: 'linear-gradient(90deg, #8B0000 0%, #c41e3a 50%, #8B0000 100%)',
+          transformStyle: 'preserve-3d',
+          zIndex: 5,
+        }} />
       </div>
+
+      {/* Floating particles */}
+      <div style={{
+        position: 'absolute',
+        top: '-50px',
+        left: '-50px',
+        right: '-50px',
+        bottom: '-50px',
+        pointerEvents: 'none',
+        zIndex: -1,
+      }}>
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              width: '4px',
+              height: '4px',
+              backgroundColor: `rgba(196, 30, 58, ${0.3 + Math.random() * 0.3})`,
+              borderRadius: '50%',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
+              animationDelay: `${i * 0.15}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% {
+            opacity: 0;
+            transform: translateY(0) translateX(0);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(-30px) translateX(10px);
+          }
+        }
+      `}</style>
     </div>
   );
 };

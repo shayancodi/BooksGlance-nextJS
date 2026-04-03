@@ -1,51 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { animationVariants } from '../../utils/animations';
-
-// TypewriterText Component
-interface TypewriterTextProps {
-  text: string;
-  className?: string;
-  delay?: number;
-  speed?: number;
-}
-
-const TypewriterText: React.FC<TypewriterTextProps> = ({ 
-  text, 
-  className = '', 
-  delay = 0, 
-  speed = 100 
-}) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (currentIndex < text.length) {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }
-    }, currentIndex === 0 ? delay : speed);
-
-    return () => clearTimeout(timer);
-  }, [currentIndex, text, delay, speed]);
-
-  return (
-    <span className={className}>
-      {displayedText}
-      <motion.span
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity }}
-        className="ml-1"
-      >
-        |
-      </motion.span>
-    </span>
-  );
-};
 
 const HeroSection: React.FC = () => {
   return (

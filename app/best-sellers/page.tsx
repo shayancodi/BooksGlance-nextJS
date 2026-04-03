@@ -2,25 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-
-const CONTAINER_VARIANTS = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const ITEM_VARIANTS = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+import { Book } from '@/data/books';
 
 export default function BestSellersPage() {
-  const [books, setBooks] = useState<any[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,10 +27,7 @@ export default function BestSellersPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-cream-50 via-sand-50 to-clay-50 dark:from-clay-900 dark:via-terracotta-950 dark:to-sand-900 py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className="mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-100 dark:via-sand-200 dark:to-cream-300 bg-clip-text text-transparent">
@@ -54,7 +36,7 @@ export default function BestSellersPage() {
           <p className="text-lg text-clay-600 dark:text-cream-300">
             Our most popular and highly-rated books. Trusted by thousands of readers.
           </p>
-        </motion.div>
+        </div>
 
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -66,16 +48,12 @@ export default function BestSellersPage() {
             ))}
           </div>
         ) : books.length > 0 ? (
-          <motion.div
-            variants={CONTAINER_VARIANTS}
-            initial="hidden"
-            animate="show"
+          <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {books.map((book, index) => (
-              <motion.div
+              <div
                 key={book.id}
-                variants={ITEM_VARIANTS}
                 className="group relative"
               >
                 {/* Bestseller Badge */}
@@ -106,9 +84,9 @@ export default function BestSellersPage() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         ) : (
           <div className="text-center py-12">
             <p className="text-xl text-clay-600 dark:text-cream-300 mb-6">
