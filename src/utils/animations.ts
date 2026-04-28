@@ -1,7 +1,6 @@
-import { Variants } from 'framer-motion';
-
 // Sophisticated animation system with varied entrance effects
-export const animationVariants: Record<string, Variants> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const animationVariants: Record<string, any> = {
   // Hero section animations
   heroContainer: {
     hidden: { opacity: 0 },

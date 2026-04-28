@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.json'
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

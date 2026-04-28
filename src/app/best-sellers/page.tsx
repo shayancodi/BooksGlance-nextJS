@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Book } from '@/data/books';
 
 export default function BestSellersPage() {
@@ -63,9 +64,11 @@ export default function BestSellersPage() {
                 <Link href={`/books/${book.id}`}>
                   <div className="bg-white dark:bg-clay-800 rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 h-64 flex flex-col">
                     {book.coverImage && (
-                      <img
+                      <Image
                         src={book.coverImage}
                         alt={book.title}
+                        width={400}
+                        height={160}
                         className="w-full h-40 object-cover"
                       />
                     )}

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { StarIcon, HeartIcon, EyeIcon, ArrowRightIcon, BookOpen } from 'lucide-react';
 import { Book } from '../../data/books';
 const FeaturedSection: React.FC = () => {
@@ -62,10 +63,12 @@ const FeaturedSection: React.FC = () => {
                 <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl">
                   {/* Book Image */}
                   <div className="relative h-80 overflow-hidden">
-                    <img 
-                      src={book.coverImage} 
+                    <Image
+                      src={book.coverImage || '/placeholder-book.png'}
                       alt={book.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      width={400}
+                      height={192}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   
                   {/* Gradient Overlay */}

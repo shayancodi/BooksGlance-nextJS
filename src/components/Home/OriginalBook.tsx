@@ -119,11 +119,11 @@ const OriginalBook: React.FC = () => {
               position: 'absolute',
               width: '4px',
               height: '4px',
-              backgroundColor: `rgba(196, 30, 58, ${0.3 + Math.random() * 0.3})`,
+              backgroundColor: `rgba(196, 30, 58, ${0.3 + (i * 7 % 10) * 0.03})`,
               borderRadius: '50%',
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
+              left: `${(i * 17 + 5) % 100}%`,
+              top: `${(i * 23 + 11) % 100}%`,
+              animation: `float ${3 + (i * 3 % 10) * 0.2}s ease-in-out infinite`,
               animationDelay: `${i * 0.15}s`,
             }}
           />

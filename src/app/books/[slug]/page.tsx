@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Book } from '@/data/books';
 import { getAllBooks } from '@/services/booksService';
@@ -77,9 +78,11 @@ const BookDetailsPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Book Image */}
           <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
-            <img 
+            <Image 
               src={book.coverImage || '/placeholder-book.png'} 
               alt={book.title}
+              width={400}
+              height={600}
               className="w-full h-auto object-cover rounded-lg"
             />
           </div>

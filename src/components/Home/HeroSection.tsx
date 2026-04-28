@@ -1,5 +1,4 @@
-'use client';
-
+"use client";
 import React from 'react';
 import Link from 'next/link';
 
@@ -14,7 +13,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Logo/Title at Top */}
-      <div className="relative z-20 mb-8 sm:mb-12 text-center">
+      <div className="relative z-20 mb-8 sm:mb-12 text-center animate-fade-in">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-400 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent tracking-wide leading-tight font-serif">
           BooksGlance
         </h1>
@@ -22,7 +21,7 @@ const HeroSection: React.FC = () => {
 
       {/* Main Content Container */}
       <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 flex-1 flex flex-col items-center justify-center">
-        <div className="text-center w-full">
+        <div className="text-center w-full animate-slide-up">
           {/* Main Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 sm:mb-8 md:mb-10 leading-tight tracking-tight">
             <span className="bg-gradient-to-r font-semibold from-terracotta-600 via-clay-600 to-sand-700 dark:from-terracotta-400 dark:via-sand-400 dark:to-clay-400 bg-clip-text text-transparent font-serif">
@@ -38,10 +37,7 @@ const HeroSection: React.FC = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
             {/* Primary CTA */}
-            <Link
-              href="/categories"
-              className="group relative inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full bg-gradient-to-r from-terracotta-600 via-terracotta-700 to-clay-600 dark:from-terracotta-500 dark:via-clay-600 dark:to-sand-600 text-cream-50 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden whitespace-nowrap hover:scale-105"
-            >
+            <Link href="/categories" className="group relative inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full bg-gradient-to-r from-terracotta-600 via-terracotta-700 to-clay-600 dark:from-terracotta-500 dark:via-clay-600 dark:to-sand-600 text-cream-50 font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden whitespace-nowrap hover:scale-105">
               <span className="relative z-10 flex items-center gap-2">
                 Explore Collection
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,14 +47,10 @@ const HeroSection: React.FC = () => {
             </Link>
 
             {/* Secondary CTA */}
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full border-2 border-clay-300 dark:border-clay-600 text-clay-700 dark:text-cream-200 font-medium text-base sm:text-lg hover:border-terracotta-500 dark:hover:border-terracotta-500 hover:text-terracotta-600 dark:hover:text-terracotta-400 transition-all duration-300 backdrop-blur-sm bg-cream-50/50 dark:bg-clay-800/30 whitespace-nowrap"
-            >
+            <Link href="/about" className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-full border-2 border-clay-300 dark:border-clay-600 text-clay-700 dark:text-cream-200 font-medium text-base sm:text-lg hover:border-terracotta-500 dark:hover:border-terracotta-500 hover:text-terracotta-600 dark:hover:text-terracotta-400 transition-all duration-300 backdrop-blur-sm bg-cream-50/50 dark:bg-clay-800/30 whitespace-nowrap">
               Learn More
             </Link>
           </div>
-
         </div>
       </div>
     </section>
