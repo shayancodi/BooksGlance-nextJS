@@ -2,20 +2,239 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==================== CSS VARIABLES ==================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcfbfa;
+  --foreground: #412f27;
+  --glass-bg: rgba(245, 242, 238, 0.6);
+  --glass-border: rgba(207, 169, 153, 0.25);
+  --glass-shadow: 0 8px 32px rgba(159, 84, 52, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #1a1410;
+  --foreground: #f5f2ee;
+  --glass-bg: rgba(65, 47, 39, 0.5);
+  --glass-border: rgba(159, 84, 52, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+/* ==================== BASE STYLES ==================== */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==================== GLASSMORPHISM ==================== */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: var(--glass-shadow);
+  }
+}
+
+/* ==================== 3D BOOK STYLES ==================== */
+.book-3d-wrapper {
+  perspective: 1200px;
+}
+
+.book-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.book-3d:hover {
+  transform: rotateY(-15deg) rotateX(5deg) scale(1.05);
+}
+
+.book-cover {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.book-spine {
+  transform: rotateY(90deg) translateZ(0px);
+  transform-origin: left center;
+}
+
+.book-shadow {
+  filter: blur(20px);
+  transform: translateY(20px) scaleX(0.9);
+  transition: all 0.5s ease;
+}
+
+.book-3d:hover .book-shadow {
+  filter: blur(30px);
+  transform: translateY(30px) scaleX(0.85);
+  opacity: 0.6;
+}
+
+/* ==================== CARD TILT EFFECT ==================== */
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-tilt:hover {
+  transform: perspective(800px) rotateY(-5deg) rotateX(3deg) translateZ(10px);
+}
+
+.card-tilt-content {
+  transform: translateZ(20px);
+}
+
+/* ==================== TYPEWRITER EFFECT ==================== */
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid currentColor;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
+}
+
+/* ==================== FLOATING PARTICLES ==================== */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ==================== SECTION REVEAL ==================== */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== GLOW PULSE ==================== */
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(159, 84, 52, 0.15), 0 0 40px rgba(159, 84, 52, 0.05); }
+  50% { box-shadow: 0 0 30px rgba(159, 84, 52, 0.3), 0 0 60px rgba(159, 84, 52, 0.1); }
+}
+
+/* ==================== SHIMMER SWEEP ==================== */
+.shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.shimmer-sweep:hover::after {
+  transform: translateX(100%);
+}
+
+/* ==================== GRADIENT TEXT ANIMATION ==================== */
+.gradient-text-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* ==================== SCROLL INDICATOR ==================== */
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* ==================== 3D HOVER CARD ==================== */
+.hover-3d {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+}
+
+.hover-3d:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(159, 84, 52, 0.2), 0 0 0 1px rgba(159, 84, 52, 0.1);
+}
+
+/* ==================== STAGGER CHILDREN ==================== */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: staggerIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes staggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== NOISE TEXTURE ==================== */
+.noise-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
 }

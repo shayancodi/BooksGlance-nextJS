@@ -17,9 +17,9 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative hover:-translate-y-3 hover:scale-[1.03] transition-all duration-300"
+      className="group relative card-tilt"
     >
-      <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-300">
+      <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 shimmer-sweep">
         {/* Book Cover */}
         <Link href={`/books/${book.slug || book.id}`} className="block relative h-80 overflow-hidden">
           <Image 

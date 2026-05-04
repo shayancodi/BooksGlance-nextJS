@@ -118,10 +118,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors">
+      <body className="min-h-full flex flex-col bg-cream-50 dark:bg-clay-900 text-clay-800 dark:text-cream-200 transition-colors">
         <ThemeProvider>
+          {/* Global glass background */}
+          <div className="fixed inset-0 -z-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-sand-100 to-clay-100 dark:from-clay-900 dark:via-terracotta-900 dark:to-sand-900" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-terracotta-300/20 via-transparent to-transparent dark:from-terracotta-600/20" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-clay-300/15 via-transparent to-transparent dark:from-clay-600/15" />
+          </div>
           <Header />
-          <main className="flex-grow">
+          <main className="flex-grow relative z-10">
             {children}
           </main>
           <Footer />
