@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,7 +8,7 @@ export async function GET() {
 
   let bookEntries = '';
   try {
-    const books = await prisma.book.findMany({ select: { slug: true, id: true } });
+    const books: { slug: string | null; id: number }[] = await prisma.books.findMany({ select: { slug: true, id: true } });
     bookEntries = books
       .map(
         (b) => `
