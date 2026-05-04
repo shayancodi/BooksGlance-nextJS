@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BookOpenIcon, StarIcon, HeartIcon, MusicIcon, GamepadIcon, CameraIcon, PaletteIcon, CodeIcon, ZapIcon } from 'lucide-react';
 
 const CategoriesSection: React.FC = () => {
@@ -15,8 +15,20 @@ const CategoriesSection: React.FC = () => {
     { name: 'Science', icon: ZapIcon, color: 'from-clay-600 to-sand-600', count: '700' }
   ];
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 relative">
+    <section ref={sectionRef} className={`py-24 relative reveal-section ${visible ? 'visible' : ''}`}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -35,7 +47,7 @@ const CategoriesSection: React.FC = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 stagger-children">
           {categories.map((category) => (
             <div key={category.name} className="group relative">
               <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl p-8 flex flex-col items-center text-center min-h-[200px] justify-center">
