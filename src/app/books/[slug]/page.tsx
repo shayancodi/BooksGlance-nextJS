@@ -4,33 +4,30 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from '@/contexts/ThemeContext';
 import { Book } from '@/data/books';
 import { getAllBooks } from '@/services/booksService';
-import { StarIcon, ShoppingCartIcon, HeartIcon, ArrowLeftIcon } from 'lucide-react';
+import { StarIcon, ShoppingCartIcon, HeartIcon, ArrowLeftIcon, BookOpenIcon, TagIcon, SparklesIcon } from 'lucide-react';
 import BookGrid from '@/components/Books/BookGrid';
 
 const BookDetailsPage = () => {
-  const { theme } = useTheme();
   const params = useParams();
   const slug = params?.slug as string;
   const [quantity, setQuantity] = useState(1);
   const [book, setBook] = useState<Book | null>(null);
   const [similarBooks, setSimilarBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const fetchBook = async () => {
       if (!slug) return;
       try {
         setLoading(true);
-        // For now, using ID matching - will be updated when API supports slug queries
         const allBooks = await getAllBooks();
         const foundBook = allBooks.find(b => b.slug === slug || b.id === slug);
         setBook(foundBook || null);
         
         if (foundBook) {
-          // Get similar books (same genre, excluding current book)
           const similar = allBooks
             .filter(b => b.genre === foundBook.genre && b.id !== foundBook.id)
             .slice(0, 4);
@@ -46,20 +43,26 @@ const BookDetailsPage = () => {
   }, [slug]);
 
   if (loading) return (
-    <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+    <div className="min-h-screen flex items-center justify-center py-20">
       <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
-        <p className={theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}>Loading book details...</p>
+        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-terracotta-400 to-clay-400 flex items-center justify-center animate-pulse">
+          <BookOpenIcon className="w-8 h-8 text-cream-50" />
+        </div>
+        <p className="text-clay-600 dark:text-cream-300 text-lg">Loading book details...</p>
       </div>
     </div>
   );
 
   if (!book) return (
-    <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
-      <div className="text-center">
-        <h1 className={`text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Book Not Found</h1>
-        <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Sorry, we couldn&apos;t find this book.</p>
-        <Link href="/books" className="inline-block px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">
+    <div className="min-h-screen flex items-center justify-center py-20">
+      <div className="text-center glass rounded-3xl p-12 border border-terracotta-200/30 max-w-md mx-4">
+        <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-terracotta-400 to-clay-400 flex items-center justify-center">
+          <BookOpenIcon className="w-10 h-10 text-cream-50" />
+        </div>
+        <h1 className="text-2xl font-bold text-clay-800 dark:text-cream-100 mb-3">Book Not Found</h1>
+        <p className="text-clay-600 dark:text-cream-300 mb-8">Sorry, we couldn&apos;t find this book.</p>
+        <Link href="/books" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-terracotta-500 to-clay-500 text-cream-50 font-semibold hover:shadow-glow hover:scale-105 transition-all duration-300">
+          <ArrowLeftIcon size={18} />
           Back to Catalog
         </Link>
       </div>
@@ -67,76 +70,145 @@ const BookDetailsPage = () => {
   );
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-gray-50'}`}>
-      {/* Rest of BookDetailsPage component content */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <Link href="/books" className="flex items-center gap-2 text-orange-500 hover:text-orange-600 mb-8">
-          <ArrowLeftIcon size={20} />
+    <div className="min-h-screen py-20 sm:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Back Link */}
+        <Link href="/books" className="inline-flex items-center gap-2 text-terracotta-600 dark:text-terracotta-400 hover:text-terracotta-700 dark:hover:text-terracotta-300 mb-8 group font-medium transition-colors">
+          <ArrowLeftIcon size={18} className="group-hover:-translate-x-1 transition-transform" />
           Back to Books
         </Link>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Book Image */}
-          <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
-            <Image 
-              src={book.coverImage || '/placeholder-book.png'} 
-              alt={book.title}
-              width={400}
-              height={600}
-              className="w-full h-auto object-cover rounded-lg"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Book Image — 3D card effect */}
+          <div className="lg:col-span-2">
+            <div className="book-3d-wrapper sticky top-28">
+              <div className="book-3d glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm p-4 sm:p-6">
+                <div className="relative aspect-[2/3] rounded-2xl overflow-hidden">
+                  <Image 
+                    src={book.coverImage || '/placeholder-book.png'} 
+                    alt={book.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                    priority
+                  />
+                  {/* Badges */}
+                  <div className="absolute top-3 left-3 flex flex-col gap-2">
+                    {book.bestSeller && (
+                      <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold rounded-full shadow-lg">
+                        Best Seller
+                      </span>
+                    )}
+                    {book.newArrival && (
+                      <span className="px-3 py-1 bg-gradient-to-r from-green-400 to-emerald-400 text-white text-xs font-bold rounded-full shadow-lg">
+                        New Arrival
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Book Details */}
-          <div className="md:col-span-2">
-            <h1 className={`text-3xl font-bold mb-2 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+          <div className="lg:col-span-3 animate-slide-up">
+            {/* Genre Tag */}
+            {book.genre && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-terracotta-200/30 mb-6">
+                <TagIcon size={14} className="text-terracotta-500" />
+                <span className="text-sm font-semibold text-clay-700 dark:text-cream-300">{book.genre}</span>
+              </div>
+            )}
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-clay-800 dark:text-cream-100 mb-3 leading-tight">
               {book.title}
             </h1>
-            <p className={`text-lg mb-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-              by {book.author}
+            <p className="text-lg sm:text-xl text-clay-600 dark:text-cream-300 mb-6">
+              by <span className="font-semibold text-terracotta-600 dark:text-terracotta-400">{book.author}</span>
             </p>
 
             {/* Rating */}
-            <div className="flex items-center gap-2 mb-6">
-              <div className="flex gap-1">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon
                     key={i}
-                    size={20}
-                    className={i < Math.floor(book.rating || 0) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'}
+                    size={22}
+                    className={i < Math.floor(book.rating || 0) ? 'fill-sand-500 text-sand-500' : 'text-clay-300 dark:text-clay-600'}
                   />
                 ))}
               </div>
-              <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                {book.rating}/5 ({Math.floor(book.rating || 0) * 10} reviews)
+              <span className="text-clay-600 dark:text-cream-400 font-medium">
+                {book.rating}/5
+              </span>
+              <span className="text-clay-400 dark:text-cream-500 text-sm">
+                ({Math.floor(book.rating || 0) * 10} reviews)
               </span>
             </div>
 
-            {/* Price */}
-            <div className="mb-6">
-              <span className="text-3xl font-bold text-orange-500">
-                Rs. {book.price?.toLocaleString()}
-              </span>
+            {/* Price Card */}
+            <div className="glass rounded-2xl border border-terracotta-200/30 p-6 mb-8">
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-4xl font-bold bg-gradient-to-r from-terracotta-600 to-clay-600 dark:from-terracotta-400 dark:to-clay-400 bg-clip-text text-transparent">
+                  PKR {book.price?.toLocaleString()}
+                </span>
+                {book.original_price && book.original_price > book.price && (
+                  <span className="text-lg text-clay-400 dark:text-cream-500 line-through">
+                    PKR {book.original_price?.toLocaleString()}
+                  </span>
+                )}
+              </div>
+              {book.original_price && book.original_price > book.price && (
+                <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold">
+                  <SparklesIcon size={14} />
+                  Save {Math.round(((book.original_price - book.price) / book.original_price) * 100)}%
+                </div>
+              )}
             </div>
 
             {/* Description */}
-            <p className={`mb-6 leading-relaxed ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-              {book.description}
-            </p>
-
-            {/* Add to Cart */}
-            <div className="flex gap-4">
-              <div className="flex items-center gap-2">
-                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-1 bg-gray-300 rounded">-</button>
-                <span className="px-4 py-1">{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-1 bg-gray-300 rounded">+</button>
+            {book.description && (
+              <div className="mb-8">
+                <h3 className="text-lg font-bold text-clay-800 dark:text-cream-200 mb-3">About This Book</h3>
+                <p className="text-clay-700 dark:text-cream-300 leading-relaxed text-base">
+                  {book.description}
+                </p>
               </div>
-              <button className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
-                <ShoppingCartIcon size={20} />
+            )}
+
+            {/* Add to Cart Controls */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* Quantity */}
+              <div className="flex items-center glass rounded-2xl border border-terracotta-200/30 overflow-hidden">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-4 py-3 text-clay-700 dark:text-cream-200 hover:bg-terracotta-500/10 transition-colors font-bold text-lg"
+                >
+                  −
+                </button>
+                <span className="px-6 py-3 font-semibold text-clay-800 dark:text-cream-200 min-w-[3rem] text-center">{quantity}</span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-4 py-3 text-clay-700 dark:text-cream-200 hover:bg-terracotta-500/10 transition-colors font-bold text-lg"
+                >
+                  +
+                </button>
+              </div>
+
+              {/* Add to Cart Button */}
+              <button className="flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 text-cream-50 font-bold text-lg shadow-warm hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shimmer-sweep relative overflow-hidden">
+                <ShoppingCartIcon size={22} />
                 Add to Cart
               </button>
-              <button className="p-2 border rounded-lg hover:bg-gray-100 transition">
-                <HeartIcon size={20} />
+
+              {/* Wishlist */}
+              <button
+                onClick={() => setIsLiked(!isLiked)}
+                className={`p-4 rounded-2xl glass border border-terracotta-200/30 hover:scale-110 active:scale-95 transition-all duration-300 ${
+                  isLiked ? 'text-red-500 bg-red-50 dark:bg-red-900/20' : 'text-clay-600 dark:text-cream-300'
+                }`}
+              >
+                <HeartIcon size={22} className={isLiked ? 'fill-current' : ''} />
               </button>
             </div>
           </div>
@@ -144,11 +216,8 @@ const BookDetailsPage = () => {
 
         {/* Similar Books */}
         {similarBooks.length > 0 && (
-          <div className="mt-16">
-            <h2 className={`text-2xl font-bold mb-8 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              Similar Books
-            </h2>
-            <BookGrid books={similarBooks} />
+          <div className="mt-20 pt-12 border-t border-terracotta-200/20">
+            <BookGrid books={similarBooks} title="You May Also Like" />
           </div>
         )}
       </div>
