@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { StarIcon, HeartIcon, EyeIcon, ArrowRightIcon, BookOpen } from 'lucide-react';
@@ -7,21 +7,32 @@ import { Book } from '../../data/books';
 const FeaturedSection: React.FC = () => {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const fetchFeaturedBooks = async () => {
-  try {
-    const response = await fetch('/api/books/featured');
-    const featured = await response.json();
-    setFeaturedBooks(featured);
-  } catch (error) {
-    console.error('Error fetching featured books:', error);
-    setFeaturedBooks([]);
-  } finally {
-    setLoading(false);
-  }
-};
+      try {
+        const response = await fetch('/api/books/featured');
+        const featured = await response.json();
+        setFeaturedBooks(featured);
+      } catch (error) {
+        console.error('Error fetching featured books:', error);
+        setFeaturedBooks([]);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchFeaturedBooks();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   if (loading) {
@@ -37,7 +48,7 @@ const FeaturedSection: React.FC = () => {
   }
 
   return (
-    <section className="py-24 relative">
+    <section ref={sectionRef} className={`py-24 relative reveal-section ${visible ? 'visible' : ''}`}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -56,7 +67,7 @@ const FeaturedSection: React.FC = () => {
         </div>
 
         {/* Books Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
           {featuredBooks.map((book) => (
             <div key={book.id} className="group relative">
               <Link href={`/book/${book.id}`} className="block">
