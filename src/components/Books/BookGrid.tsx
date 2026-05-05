@@ -11,7 +11,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, title }) => {
   return (
     <div className="w-full">
       {title && (
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center bg-gradient-to-r from-clay-800 via-terracotta-700 to-clay-600 dark:from-cream-200 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 bg-clip-text text-transparent font-serif">
           {title}
         </h2>
       )}

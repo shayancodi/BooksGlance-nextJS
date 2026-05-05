@@ -20,13 +20,13 @@ export default function BooksPage() {
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-terracotta-200/30 mb-8">
-            <span className="text-sm font-semibold text-clay-800 dark:text-cream-200">Complete Catalog</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-gold-500/15 mb-8">
+            <span className="text-sm font-semibold text-ivory-200">Complete Catalog</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-200 dark:via-cream-100 dark:to-sand-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 bg-clip-text text-transparent font-serif">
             Our Book Collection
           </h1>
-          <p className="text-lg sm:text-xl text-clay-600 dark:text-cream-300 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-ivory-400 max-w-2xl mx-auto">
             Discover thousands of books across all categories and genres
           </p>
         </div>

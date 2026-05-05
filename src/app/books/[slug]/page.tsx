@@ -45,23 +45,23 @@ const BookDetailsPage = () => {
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center py-20">
       <div className="text-center">
-        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-terracotta-400 to-clay-400 flex items-center justify-center animate-pulse">
-          <BookOpenIcon className="w-8 h-8 text-cream-50" />
+        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gold-500 to-amber-600 flex items-center justify-center animate-pulse">
+          <BookOpenIcon className="w-8 h-8 text-noir-950" />
         </div>
-        <p className="text-clay-600 dark:text-cream-300 text-lg">Loading book details...</p>
+        <p className="text-ivory-400 text-lg">Loading book details...</p>
       </div>
     </div>
   );
 
   if (!book) return (
     <div className="min-h-screen flex items-center justify-center py-20">
-      <div className="text-center glass rounded-3xl p-12 border border-terracotta-200/30 max-w-md mx-4">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-terracotta-400 to-clay-400 flex items-center justify-center">
-          <BookOpenIcon className="w-10 h-10 text-cream-50" />
+      <div className="text-center glass rounded-3xl p-12 border border-gold-500/15 max-w-md mx-4">
+        <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gold-500 to-amber-600 flex items-center justify-center">
+          <BookOpenIcon className="w-10 h-10 text-noir-950" />
         </div>
-        <h1 className="text-2xl font-bold text-clay-800 dark:text-cream-100 mb-3">Book Not Found</h1>
-        <p className="text-clay-600 dark:text-cream-300 mb-8">Sorry, we couldn&apos;t find this book.</p>
-        <Link href="/books" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-terracotta-500 to-clay-500 text-cream-50 font-semibold hover:shadow-glow hover:scale-105 transition-all duration-300">
+        <h1 className="text-2xl font-bold text-ivory-100 mb-3">Book Not Found</h1>
+        <p className="text-ivory-400 mb-8">Sorry, we couldn&apos;t find this book.</p>
+        <Link href="/books" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-gold-500 to-amber-500 text-noir-950 font-semibold hover:shadow-glow hover:scale-105 transition-all duration-300">
           <ArrowLeftIcon size={18} />
           Back to Catalog
         </Link>
@@ -73,7 +73,7 @@ const BookDetailsPage = () => {
     <div className="min-h-screen py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Back Link */}
-        <Link href="/books" className="inline-flex items-center gap-2 text-terracotta-600 dark:text-terracotta-400 hover:text-terracotta-700 dark:hover:text-terracotta-300 mb-8 group font-medium transition-colors">
+        <Link href="/books" className="inline-flex items-center gap-2 text-gold-500 hover:text-gold-400 mb-8 group font-medium transition-colors">
           <ArrowLeftIcon size={18} className="group-hover:-translate-x-1 transition-transform" />
           Back to Books
         </Link>
@@ -82,7 +82,7 @@ const BookDetailsPage = () => {
           {/* Book Image — 3D card effect */}
           <div className="lg:col-span-2">
             <div className="book-3d-wrapper sticky top-28">
-              <div className="book-3d glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm p-4 sm:p-6">
+              <div className="book-3d glass rounded-3xl overflow-hidden border border-gold-500/10 shadow-warm p-4 sm:p-6">
                 <div className="relative aspect-[2/3] rounded-2xl overflow-hidden">
                   <Image 
                     src={book.coverImage || '/placeholder-book.png'} 
@@ -95,12 +95,12 @@ const BookDetailsPage = () => {
                   {/* Badges */}
                   <div className="absolute top-3 left-3 flex flex-col gap-2">
                     {book.bestSeller && (
-                      <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold rounded-full shadow-lg">
+                      <span className="px-3 py-1 bg-gradient-to-r from-gold-500 to-amber-500 text-noir-950 text-xs font-bold rounded-full shadow-lg">
                         Best Seller
                       </span>
                     )}
                     {book.newArrival && (
-                      <span className="px-3 py-1 bg-gradient-to-r from-green-400 to-emerald-400 text-white text-xs font-bold rounded-full shadow-lg">
+                      <span className="px-3 py-1 bg-gradient-to-r from-emerald-500 to-green-400 text-noir-950 text-xs font-bold rounded-full shadow-lg">
                         New Arrival
                       </span>
                     )}
@@ -114,17 +114,17 @@ const BookDetailsPage = () => {
           <div className="lg:col-span-3 animate-slide-up">
             {/* Genre Tag */}
             {book.genre && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-terracotta-200/30 mb-6">
-                <TagIcon size={14} className="text-terracotta-500" />
-                <span className="text-sm font-semibold text-clay-700 dark:text-cream-300">{book.genre}</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-gold-500/15 mb-6">
+                <TagIcon size={14} className="text-gold-500" />
+                <span className="text-sm font-semibold text-ivory-300">{book.genre}</span>
               </div>
             )}
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-clay-800 dark:text-cream-100 mb-3 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory-100 mb-3 leading-tight font-serif">
               {book.title}
             </h1>
-            <p className="text-lg sm:text-xl text-clay-600 dark:text-cream-300 mb-6">
-              by <span className="font-semibold text-terracotta-600 dark:text-terracotta-400">{book.author}</span>
+            <p className="text-lg sm:text-xl text-ivory-400 mb-6">
+              by <span className="font-semibold text-gold-400">{book.author}</span>
             </p>
 
             {/* Rating */}
@@ -134,32 +134,32 @@ const BookDetailsPage = () => {
                   <StarIcon
                     key={i}
                     size={22}
-                    className={i < Math.floor(book.rating || 0) ? 'fill-sand-500 text-sand-500' : 'text-clay-300 dark:text-clay-600'}
+                    className={i < Math.floor(book.rating || 0) ? 'fill-gold-500 text-gold-500' : 'text-noir-600'}
                   />
                 ))}
               </div>
-              <span className="text-clay-600 dark:text-cream-400 font-medium">
+              <span className="text-ivory-300 font-medium">
                 {book.rating}/5
               </span>
-              <span className="text-clay-400 dark:text-cream-500 text-sm">
+              <span className="text-ivory-500 text-sm">
                 ({Math.floor(book.rating || 0) * 10} reviews)
               </span>
             </div>
 
             {/* Price Card */}
-            <div className="glass rounded-2xl border border-terracotta-200/30 p-6 mb-8">
+            <div className="glass rounded-2xl border border-gold-500/15 p-6 mb-8">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-4xl font-bold bg-gradient-to-r from-terracotta-600 to-clay-600 dark:from-terracotta-400 dark:to-clay-400 bg-clip-text text-transparent">
+                <span className="text-4xl font-bold bg-gradient-to-r from-gold-400 to-gold-600 bg-clip-text text-transparent">
                   PKR {book.price?.toLocaleString()}
                 </span>
                 {book.original_price && book.original_price > book.price && (
-                  <span className="text-lg text-clay-400 dark:text-cream-500 line-through">
+                  <span className="text-lg text-ivory-600 line-through">
                     PKR {book.original_price?.toLocaleString()}
                   </span>
                 )}
               </div>
               {book.original_price && book.original_price > book.price && (
-                <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold">
+                <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-400 text-sm font-semibold">
                   <SparklesIcon size={14} />
                   Save {Math.round(((book.original_price - book.price) / book.original_price) * 100)}%
                 </div>
@@ -169,8 +169,8 @@ const BookDetailsPage = () => {
             {/* Description */}
             {book.description && (
               <div className="mb-8">
-                <h3 className="text-lg font-bold text-clay-800 dark:text-cream-200 mb-3">About This Book</h3>
-                <p className="text-clay-700 dark:text-cream-300 leading-relaxed text-base">
+                <h3 className="text-lg font-bold text-ivory-200 mb-3">About This Book</h3>
+                <p className="text-ivory-400 leading-relaxed text-base">
                   {book.description}
                 </p>
               </div>
@@ -179,24 +179,24 @@ const BookDetailsPage = () => {
             {/* Add to Cart Controls */}
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Quantity */}
-              <div className="flex items-center glass rounded-2xl border border-terracotta-200/30 overflow-hidden">
+              <div className="flex items-center glass rounded-2xl border border-gold-500/15 overflow-hidden">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 py-3 text-clay-700 dark:text-cream-200 hover:bg-terracotta-500/10 transition-colors font-bold text-lg"
+                  className="px-4 py-3 text-ivory-200 hover:bg-gold-500/10 transition-colors font-bold text-lg"
                 >
                   −
                 </button>
-                <span className="px-6 py-3 font-semibold text-clay-800 dark:text-cream-200 min-w-[3rem] text-center">{quantity}</span>
+                <span className="px-6 py-3 font-semibold text-ivory-100 min-w-[3rem] text-center">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="px-4 py-3 text-clay-700 dark:text-cream-200 hover:bg-terracotta-500/10 transition-colors font-bold text-lg"
+                  className="px-4 py-3 text-ivory-200 hover:bg-gold-500/10 transition-colors font-bold text-lg"
                 >
                   +
                 </button>
               </div>
 
               {/* Add to Cart Button */}
-              <button className="flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 text-cream-50 font-bold text-lg shadow-warm hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shimmer-sweep relative overflow-hidden">
+              <button className="flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-noir-950 font-bold text-lg shadow-gold hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shimmer-sweep relative overflow-hidden">
                 <ShoppingCartIcon size={22} />
                 Add to Cart
               </button>
@@ -204,8 +204,8 @@ const BookDetailsPage = () => {
               {/* Wishlist */}
               <button
                 onClick={() => setIsLiked(!isLiked)}
-                className={`p-4 rounded-2xl glass border border-terracotta-200/30 hover:scale-110 active:scale-95 transition-all duration-300 ${
-                  isLiked ? 'text-red-500 bg-red-50 dark:bg-red-900/20' : 'text-clay-600 dark:text-cream-300'
+                className={`p-4 rounded-2xl glass border border-gold-500/15 hover:scale-110 active:scale-95 transition-all duration-300 ${
+                  isLiked ? 'text-red-500 bg-red-900/20' : 'text-ivory-400'
                 }`}
               >
                 <HeartIcon size={22} className={isLiked ? 'fill-current' : ''} />
@@ -216,7 +216,7 @@ const BookDetailsPage = () => {
 
         {/* Similar Books */}
         {similarBooks.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-terracotta-200/20">
+          <div className="mt-20 pt-12 border-t border-gold-500/10">
             <BookGrid books={similarBooks} title="You May Also Like" />
           </div>
         )}

@@ -41,19 +41,19 @@ const HeroSection: React.FC = () => {
     >
       {/* Animated Background Gradients */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-50 via-sand-50/60 to-clay-50/40 dark:from-clay-900 dark:via-terracotta-900/40 dark:to-sand-900/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-terracotta-200/30 via-transparent to-transparent dark:from-terracotta-700/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sand-200/40 via-transparent to-transparent dark:from-clay-700/20" />
+        <div className="absolute inset-0 bg-noir-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold-500/[0.08] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-noir-800/50 via-transparent to-transparent" />
       </div>
 
       {/* Background Website Name - Subtle */}
-      <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-none opacity-[0.03] dark:opacity-[0.06]">
-        <h1 className="text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[20rem] font-black text-clay-800 dark:text-cream-200 font-serif tracking-[0.1em] leading-tight select-none whitespace-nowrap uppercase">
+      <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-none opacity-[0.03]">
+        <h1 className="text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[20rem] font-black text-gold-500 font-serif tracking-[0.1em] leading-tight select-none whitespace-nowrap uppercase">
           BooksGlance
         </h1>
       </div>
 
-      {/* Floating Particles */}
+      {/* Floating Particles — gold */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         {[...Array(15)].map((_, i) => (
           <div
@@ -62,7 +62,7 @@ const HeroSection: React.FC = () => {
             style={{
               width: `${2 + (i % 3) * 2}px`,
               height: `${2 + (i % 3) * 2}px`,
-              background: `rgba(159, 84, 52, ${0.15 + (i % 5) * 0.05})`,
+              background: `rgba(201, 169, 110, ${0.15 + (i % 5) * 0.05})`,
               left: `${(i * 7 + 3) % 100}%`,
               bottom: `-10px`,
               animationDuration: `${8 + (i * 2) % 7}s`,
@@ -74,7 +74,7 @@ const HeroSection: React.FC = () => {
 
       {/* Logo/Title at Top */}
       <div className="relative z-20 mb-6 sm:mb-10 text-center animate-fade-in">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-clay-700 via-terracotta-700 to-clay-500 dark:from-cream-400 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent tracking-wide leading-tight font-serif gradient-text-animate">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 bg-clip-text text-transparent tracking-wide leading-tight font-serif gradient-text-animate">
           BooksGlance
         </h1>
       </div>
@@ -85,21 +85,21 @@ const HeroSection: React.FC = () => {
         <div className="text-center lg:text-left w-full lg:w-1/2 animate-slide-up">
           {/* Typewriter Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 sm:mb-8 leading-tight tracking-tight min-h-[1.2em]">
-            <span className="bg-gradient-to-r font-semibold from-terracotta-600 via-clay-600 to-sand-700 dark:from-terracotta-400 dark:via-sand-400 dark:to-clay-400 bg-clip-text text-transparent font-serif">
+            <span className="bg-gradient-to-r font-semibold from-ivory-100 via-gold-300 to-ivory-200 bg-clip-text text-transparent font-serif">
               {displayText}
             </span>
-            <span className="inline-block w-[3px] h-[0.9em] bg-terracotta-500 dark:bg-terracotta-400 ml-1 animate-pulse" />
+            <span className="inline-block w-[3px] h-[0.9em] bg-gold-500 ml-1 animate-pulse" />
           </h2>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-clay-700 dark:text-cream-300 leading-relaxed mb-10 sm:mb-14 max-w-xl mx-auto lg:mx-0">
+          <p className="text-base sm:text-lg md:text-xl text-ivory-400 leading-relaxed mb-10 sm:mb-14 max-w-xl mx-auto lg:mx-0">
             Discover extraordinary books that inspire, educate, and transform your reading journey into an unforgettable adventure.
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-6">
-            {/* Primary CTA */}
-            <Link href="/categories" className="group relative inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 rounded-full bg-gradient-to-r from-terracotta-600 via-terracotta-700 to-clay-600 dark:from-terracotta-500 dark:via-clay-600 dark:to-sand-600 text-cream-50 font-medium text-base sm:text-lg shadow-lg hover:shadow-glow transition-all duration-300 overflow-hidden whitespace-nowrap hover:scale-105 hover:-translate-y-1 shimmer-sweep glow-pulse">
+            {/* Primary CTA — gold */}
+            <Link href="/categories" className="group relative inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-amber-500 text-noir-950 font-semibold text-base sm:text-lg shadow-gold-lg hover:shadow-glow-lg transition-all duration-300 overflow-hidden whitespace-nowrap hover:scale-105 hover:-translate-y-1 shimmer-sweep glow-pulse">
               <span className="relative z-10 flex items-center gap-2">
                 Explore Collection
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,7 +109,7 @@ const HeroSection: React.FC = () => {
             </Link>
 
             {/* Secondary CTA */}
-            <Link href="/about" className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 rounded-full border-2 border-clay-300 dark:border-clay-600 text-clay-700 dark:text-cream-200 font-medium text-base sm:text-lg hover:border-terracotta-500 dark:hover:border-terracotta-500 hover:text-terracotta-600 dark:hover:text-terracotta-400 transition-all duration-300 glass whitespace-nowrap hover:scale-105 hover:-translate-y-1">
+            <Link href="/about" className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 rounded-full border border-gold-500/30 text-ivory-200 font-medium text-base sm:text-lg hover:border-gold-500/60 hover:text-gold-400 transition-all duration-300 glass whitespace-nowrap hover:scale-105 hover:-translate-y-1">
               Learn More
             </Link>
           </div>
@@ -123,8 +123,8 @@ const HeroSection: React.FC = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 scroll-indicator">
-        <div className="w-6 h-10 rounded-full border-2 border-clay-400/50 dark:border-cream-400/30 flex items-start justify-center p-1.5">
-          <div className="w-1.5 h-2.5 bg-terracotta-500 dark:bg-terracotta-400 rounded-full animate-bounce" />
+        <div className="w-6 h-10 rounded-full border-2 border-ivory-700/50 flex items-start justify-center p-1.5">
+          <div className="w-1.5 h-2.5 bg-gold-500 rounded-full animate-bounce" />
         </div>
       </div>
     </section>

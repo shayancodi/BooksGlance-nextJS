@@ -38,7 +38,7 @@ const FeaturedSection: React.FC = () => {
   if (loading) {
     return <section className="py-24 relative">
       <div className="container mx-auto px-6 text-center">
-        <p className="text-clay-700 dark:text-cream-300">Loading featured books...</p>
+        <p className="text-ivory-400">Loading featured books...</p>
       </div>
     </section>;
   }
@@ -52,16 +52,16 @@ const FeaturedSection: React.FC = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-terracotta-200/30 mb-8 backdrop-blur-xl">
-            <StarIcon className="w-5 h-5 text-terracotta-600" />
-            <span className="text-sm font-semibold text-clay-800 dark:text-cream-200">Featured Collection</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-gold-500/15 mb-8 backdrop-blur-xl">
+            <StarIcon className="w-5 h-5 text-gold-500" />
+            <span className="text-sm font-semibold text-ivory-200">Featured Collection</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-clay-800 via-terracotta-700 to-clay-600 dark:from-cream-200 dark:via-cream-100 dark:to-sand-200 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 bg-clip-text text-transparent font-serif">
             Trending Now
           </h2>
           
-          <p className="text-xl text-clay-700 dark:text-cream-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-ivory-400 max-w-3xl mx-auto leading-relaxed">
             Discover the most popular books that readers are loving right now
           </p>
         </div>
@@ -71,7 +71,7 @@ const FeaturedSection: React.FC = () => {
           {featuredBooks.map((book) => (
             <div key={book.id} className="group relative">
               <Link href={`/book/${book.id}`} className="block">
-                <div className="relative glass rounded-3xl overflow-hidden border border-terracotta-200/30 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl">
+                <div className="relative glass rounded-3xl overflow-hidden border border-gold-500/10 shadow-warm hover:shadow-glow transition-all duration-500 backdrop-blur-xl">
                   {/* Book Image */}
                   <div className="relative h-80 overflow-hidden">
                     <Image
@@ -83,19 +83,19 @@ const FeaturedSection: React.FC = () => {
                     />
                   
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-clay-900/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-noir-950/80 via-noir-950/20 to-transparent" />
                   
                   {/* Category Badge */}
-                  <div className="absolute top-4 left-4 px-4 py-2 rounded-full glass border border-terracotta-200/30 backdrop-blur-xl">
-                    <span className="text-xs font-semibold text-cream-200">{book.genre}</span>
+                  <div className="absolute top-4 left-4 px-4 py-2 rounded-full glass border border-gold-500/20 backdrop-blur-xl">
+                    <span className="text-xs font-semibold text-ivory-200">{book.genre}</span>
                   </div>
 
                   {/* Action Buttons */}
                   <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="p-3 rounded-2xl glass border border-terracotta-200/30 text-cream-200 hover:bg-terracotta-500/80 transition-all duration-300 backdrop-blur-xl hover:scale-110">
+                    <button className="p-3 rounded-2xl glass border border-gold-500/20 text-ivory-200 hover:bg-gold-500/20 hover:text-gold-400 transition-all duration-300 backdrop-blur-xl hover:scale-110">
                       <HeartIcon size={18} />
                     </button>
-                    <button className="p-3 rounded-2xl glass border border-terracotta-200/30 text-cream-200 hover:bg-sand-500/80 transition-all duration-300 backdrop-blur-xl hover:scale-110">
+                    <button className="p-3 rounded-2xl glass border border-gold-500/20 text-ivory-200 hover:bg-gold-500/20 hover:text-gold-400 transition-all duration-300 backdrop-blur-xl hover:scale-110">
                       <EyeIcon size={18} />
                     </button>
                   </div>
@@ -103,11 +103,11 @@ const FeaturedSection: React.FC = () => {
 
                 {/* Book Details */}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-clay-800 dark:text-cream-200 mb-2 group-hover:text-terracotta-600 dark:group-hover:text-terracotta-400 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-ivory-100 mb-2 group-hover:text-gold-400 transition-colors duration-300">
                     {book.title}
                   </h3>
                   
-                  <p className="text-clay-600 dark:text-cream-300 text-lg mb-4">
+                  <p className="text-ivory-500 text-lg mb-4">
                     by {book.author}
                   </p>
 
@@ -120,13 +120,13 @@ const FeaturedSection: React.FC = () => {
                           size={20} 
                           className={`${
                             i < Math.floor(book.rating ?? 0) 
-                              ? 'text-sand-500 fill-sand-500' 
-                              : 'text-clay-400'
+                              ? 'text-gold-500 fill-gold-500' 
+                              : 'text-noir-600'
                           }`} 
                         />
                       ))}
                     </div>
-                    <span className="ml-3 text-lg text-clay-500 dark:text-cream-400 font-medium">
+                    <span className="ml-3 text-lg text-ivory-500 font-medium">
                       {book.rating}
                     </span>
                   </div>
@@ -134,13 +134,13 @@ const FeaturedSection: React.FC = () => {
                   {/* Price and CTA */}
                   <div className="flex justify-between items-center">
                     <div className="flex flex-col">
-                      <span className="text-3xl font-bold bg-gradient-to-r from-terracotta-600 to-clay-600 dark:from-terracotta-400 dark:to-clay-400 bg-clip-text text-transparent">
+                      <span className="text-3xl font-bold bg-gradient-to-r from-gold-400 to-gold-600 bg-clip-text text-transparent">
                         PKR {book.price.toFixed(2)}
                       </span>
                     </div>
 
                     <button
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-cream-50 bg-gradient-to-r from-terracotta-500 to-clay-500 hover:from-terracotta-600 hover:to-clay-600 transition-all duration-300 shadow-lg hover:shadow-glow"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-noir-950 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 transition-all duration-300 shadow-gold hover:shadow-glow"
                     >
                       <BookOpen size={18} />
                       Add to Cart
@@ -149,7 +149,7 @@ const FeaturedSection: React.FC = () => {
                 </div>
 
                 {/* Shimmer Effect */}
-                <div className="absolute inset-0 -top-1 -left-1 w-[calc(100%+8px)] h-[calc(100%+8px)] bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100" />
+                <div className="absolute inset-0 -top-1 -left-1 w-[calc(100%+8px)] h-[calc(100%+8px)] bg-gradient-to-r from-transparent via-gold-500/5 to-transparent opacity-0 group-hover:opacity-100" />
                 </div>
               </Link>
             </div>
@@ -159,7 +159,7 @@ const FeaturedSection: React.FC = () => {
         {/* View All Button */}
         <div className="text-center mt-16">
           <Link href="/categories">
-            <button className="group inline-flex items-center gap-3 px-10 py-4 rounded-3xl font-bold text-lg text-clay-800 dark:text-cream-200 glass border border-terracotta-200/30 hover:border-terracotta-300/50 transition-all duration-300 backdrop-blur-xl hover:scale-105 hover:-translate-y-0.5">
+            <button className="group inline-flex items-center gap-3 px-10 py-4 rounded-3xl font-bold text-lg text-ivory-200 glass border border-gold-500/15 hover:border-gold-500/30 hover:text-gold-400 transition-all duration-300 backdrop-blur-xl hover:scale-105 hover:-translate-y-0.5">
               View All Books
               <div>
                 <ArrowRightIcon className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
